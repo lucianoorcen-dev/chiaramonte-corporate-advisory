@@ -95,8 +95,9 @@
 </head>
 <body class="lang-en bg-surface text-on-surface font-body selection:bg-tertiary-container selection:text-on-tertiary-container">
 <!-- TopAppBar -->
-<header class="bg-surface/80 backdrop-blur-xl fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-12 py-6 z-50">
-<div class="text-xl font-headline tracking-tighter text-on-surface">
+<header class="bg-surface/80 backdrop-blur-xl fixed top-0 left-0 w-full z-50 border-b border-outline-variant/10">
+<div class="flex justify-between items-center px-6 md:px-12 py-5 gap-4">
+<div class="text-lg sm:text-xl font-headline tracking-tighter text-on-surface leading-tight">
             Chiaramonte Corporate Advisory
         </div>
 <nav class="hidden md:flex gap-10 items-center">
@@ -112,15 +113,42 @@
 <a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="#contact" lang-data="es">Contacto</a>
 <!-- Language Switcher -->
 <div class="flex items-center gap-2 border-l border-outline-variant/30 pl-8 text-[10px] tracking-widest font-bold">
-<button class="lang-switch-active hover:text-gold transition-colors uppercase" id="btn-en" onclick="setLanguage('en')">EN</button>
+<button class="lang-switch-active hover:text-gold transition-colors uppercase" id="btn-en" onclick="setLanguage('en')" type="button">EN</button>
 <span class="text-outline-variant">|</span>
-<button class="text-outline-variant hover:text-gold transition-colors uppercase" id="btn-es" onclick="setLanguage('es')">ES</button>
+<button class="text-outline-variant hover:text-gold transition-colors uppercase" id="btn-es" onclick="setLanguage('es')" type="button">ES</button>
 </div>
 </nav>
-<a class="bg-primary text-on-primary px-8 py-3 text-xs tracking-widest uppercase font-medium hover:opacity-80 transition-all inline-block" href="#contact">
+<a class="hidden md:inline-block bg-primary text-on-primary px-8 py-3 text-xs tracking-widest uppercase font-medium hover:opacity-80 transition-all" href="#contact">
 <span lang-data="en">Confidential Consultation</span>
 <span lang-data="es">Consulta Confidencial</span>
 </a>
+<div class="md:hidden flex items-center gap-4 shrink-0">
+<div class="flex items-center gap-2 text-[11px] tracking-widest font-bold">
+<button class="lang-switch-active hover:text-gold transition-colors uppercase" id="btn-en-mobile" onclick="setLanguage('en')" type="button">EN</button>
+<span class="text-outline-variant">|</span>
+<button class="text-outline-variant hover:text-gold transition-colors uppercase" id="btn-es-mobile" onclick="setLanguage('es')" type="button">ES</button>
+</div>
+<button aria-controls="mobile-menu" aria-expanded="false" class="text-on-surface p-2 border border-outline-variant/30" id="mobile-menu-button" type="button">
+<span class="material-symbols-outlined text-[22px]">menu</span>
+</button>
+</div>
+</div>
+<div class="hidden md:hidden px-6 pb-5 border-t border-outline-variant/10 bg-surface/95" id="mobile-menu">
+<nav class="flex flex-col gap-4 pt-4">
+<a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="#about" lang-data="en">About the Firm</a>
+<a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="#services" lang-data="en">Services</a>
+<a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="#methodology" lang-data="en">How We Work</a>
+<a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="#contact" lang-data="en">Contact</a>
+<a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="#about" lang-data="es">Sobre la Firma</a>
+<a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="#services" lang-data="es">Servicios</a>
+<a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="#methodology" lang-data="es">Cómo Trabajamos</a>
+<a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="#contact" lang-data="es">Contacto</a>
+<a class="mt-3 bg-primary text-on-primary px-5 py-4 text-xs tracking-widest uppercase font-medium text-center" href="#contact">
+<span lang-data="en">Confidential Consultation</span>
+<span lang-data="es">Consulta Confidencial</span>
+</a>
+</nav>
+</div>
 </header>
 <main>
 <!-- Home Hero -->
@@ -625,33 +653,55 @@
 </div>
 </footer>
 <script>
+        function updateLanguageButtons(activeLang) {
+            ['btn-en', 'btn-es', 'btn-en-mobile', 'btn-es-mobile'].forEach((id) => {
+                const button = document.getElementById(id);
+                if (!button) return;
+
+                const isEnglishButton = id.includes('en');
+                const isActive = (activeLang === 'en' && isEnglishButton) || (activeLang === 'es' && !isEnglishButton);
+
+                button.classList.toggle('lang-switch-active', isActive);
+                button.classList.toggle('text-outline-variant', !isActive);
+            });
+        }
+
         function setLanguage(lang) {
-            // Update body class
             document.body.classList.remove('lang-en', 'lang-es');
             document.body.classList.add('lang-' + lang);
-            
-            // Update switcher buttons
-            const btnEn = document.getElementById('btn-en');
-            const btnEs = document.getElementById('btn-es');
-            const languageField = document.querySelector('input[name="_language"]');
-            
-            if (lang === 'en') {
-                btnEn.classList.add('lang-switch-active');
-                btnEn.classList.remove('text-outline-variant');
-                btnEs.classList.remove('lang-switch-active');
-                btnEs.classList.add('text-outline-variant');
-                document.documentElement.lang = 'en';
-            } else {
-                btnEs.classList.add('lang-switch-active');
-                btnEs.classList.remove('text-outline-variant');
-                btnEn.classList.remove('lang-switch-active');
-                btnEn.classList.add('text-outline-variant');
-                document.documentElement.lang = 'es';
-            }
+            document.documentElement.lang = lang;
+            updateLanguageButtons(lang);
 
+            const languageField = document.querySelector('input[name="_language"]');
             if (languageField) {
                 languageField.value = lang;
             }
+        }
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+        if (mobileMenu && mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', function () {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                mobileMenu.classList.toggle('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', String(isHidden));
+                const icon = mobileMenuButton.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    icon.textContent = isHidden ? 'close' : 'menu';
+                }
+            });
+
+            mobileMenu.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', function () {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    const icon = mobileMenuButton.querySelector('.material-symbols-outlined');
+                    if (icon) {
+                        icon.textContent = 'menu';
+                    }
+                });
+            });
         }
 
         const contactForm = document.getElementById('contact-form');
@@ -703,5 +753,7 @@
                 }
             });
         }
+
+        updateLanguageButtons(document.body.classList.contains('lang-es') ? 'es' : 'en');
     </script>
 </body></html>
