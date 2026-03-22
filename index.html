@@ -589,6 +589,16 @@
 <label class="block text-[10px] tracking-widest uppercase font-bold text-on-surface-variant mb-1" for="message" lang-data="es">Mensaje</label>
 <textarea class="w-full bg-transparent border-none p-0 focus:ring-0 text-on-surface placeholder:text-outline-variant/50 resize-none" id="message" name="message" placeholder="..." required rows="3"></textarea>
 </div>
+<input name="privacy_policy_version" type="hidden" value="2026-03-22"/>
+<div class="rounded-2xl border border-outline-variant/60 bg-[#121212] px-5 py-5 space-y-4">
+<p class="text-[11px] leading-relaxed text-on-surface-variant" lang-data="en">Before submitting, please note that <strong class="text-on-surface">Luciano Chiaramonte</strong> will process the data provided in this form solely to receive, evaluate and respond to your inquiry. You may exercise your rights of access, rectification, update or deletion by emailing <a class="text-gold hover:underline" href="mailto:chiaramonteluciano@hotmail.com">chiaramonteluciano@hotmail.com</a>. Full details are available in the <a class="text-gold hover:underline" href="privacy.html">Privacy Policy</a>.</p>
+<p class="text-[11px] leading-relaxed text-on-surface-variant" lang-data="es">Antes de enviar, tené en cuenta que <strong class="text-on-surface">Luciano Chiaramonte</strong> tratará los datos ingresados en este formulario exclusivamente para recibir, evaluar y responder tu consulta. Podés ejercer tus derechos de acceso, rectificación, actualización o supresión escribiendo a <a class="text-gold hover:underline" href="mailto:chiaramonteluciano@hotmail.com">chiaramonteluciano@hotmail.com</a>. Los detalles completos se encuentran en la <a class="text-gold hover:underline" href="privacy.html">Política de Privacidad</a>.</p>
+<div class="flex items-start gap-3">
+<input class="mt-1 h-4 w-4 rounded border-outline-variant bg-transparent text-gold focus:ring-gold" id="privacy-consent" name="privacy_consent" required type="checkbox" value="accepted"/>
+<label class="text-[11px] leading-relaxed text-on-surface-variant" for="privacy-consent" lang-data="en">I have read the <a class="text-gold hover:underline" href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and consent to the processing of my personal data for the purpose of responding to this inquiry.</label>
+<label class="text-[11px] leading-relaxed text-on-surface-variant" for="privacy-consent" lang-data="es">He leído la <a class="text-gold hover:underline" href="privacy.html" target="_blank" rel="noopener noreferrer">Política de Privacidad</a> y consiento el tratamiento de mis datos personales con la finalidad de responder esta consulta.</label>
+</div>
+</div>
 <button class="w-full bg-primary text-on-primary py-5 text-xs tracking-widest uppercase font-bold hover:bg-gold transition-colors disabled:opacity-70 disabled:cursor-not-allowed" id="contact-submit" type="submit">
 <span lang-data="en">Request confidential consultation</span>
 <span lang-data="es">Solicitar consulta confidencial</span>
@@ -718,6 +728,10 @@
         if (contactForm && submitButton && formStatus) {
             contactForm.addEventListener('submit', async function (event) {
                 event.preventDefault();
+
+                if (!contactForm.reportValidity()) {
+                    return;
+                }
 
                 submitButton.disabled = true;
                 formStatus.classList.remove('hidden', 'text-red-700', 'text-green-700');
