@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Chiaramonte Corporate Advisory | Structure, Traceability &amp; Decision</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,700;1,6..72,400;1,6..72,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "gold": "#D4AF37",
+              "secondary-dim": "#445567",
+              "error-container": "#fe8983",
+              "tertiary-fixed-dim": "#ecc479",
+              "on-surface-variant": "#5e5f5f",
+              "tertiary-dim": "#6b4e0e",
+              "on-tertiary-fixed-variant": "#6c500f",
+              "primary-container": "#e5e2e1",
+              "on-background": "#313333",
+              "outline-variant": "#b2b2b2",
+              "primary-dim": "#535252",
+              "surface-container-low": "#f5f3f3",
+              "on-primary-fixed": "#403f3f",
+              "surface-dim": "#dadada",
+              "on-secondary-container": "#425366",
+              "on-error-container": "#752121",
+              "on-error": "#fff7f6",
+              "outline": "#7a7b7b",
+              "surface-bright": "#fcf9f8",
+              "surface-container-highest": "#e3e2e2",
+              "surface-tint": "#5f5e5e",
+              "on-tertiary-fixed": "#4a3400",
+              "on-secondary-fixed": "#304153",
+              "inverse-surface": "#0e0e0e",
+              "primary-fixed": "#e5e2e1",
+              "secondary-fixed": "#d2e4fb",
+              "tertiary-container": "#fbd185",
+              "tertiary-fixed": "#fbd185",
+              "on-secondary-fixed-variant": "#4c5d70",
+              "error-dim": "#4e0309",
+              "primary": "#5f5e5e",
+              "error": "#9f403d",
+              "on-secondary": "#f7f9ff",
+              "surface-container-high": "#e9e8e8",
+              "on-primary-fixed-variant": "#5c5b5b",
+              "surface-variant": "#e3e2e2",
+              "inverse-primary": "#ffffff",
+              "on-primary-container": "#525151",
+              "primary-fixed-dim": "#d7d4d3",
+              "on-tertiary": "#fff8f1",
+              "surface-container": "#efeded",
+              "on-surface": "#313333",
+              "secondary": "#506174",
+              "secondary-container": "#d2e4fb",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-container": "#624604",
+              "on-primary": "#faf7f6",
+              "inverse-on-surface": "#9e9c9c",
+              "tertiary": "#785a1a",
+              "background": "#fcf9f8",
+              "surface": "#fcf9f8",
+              "secondary-fixed-dim": "#c4d6ed"
+            },
+            fontFamily: {
+              "headline": ["Newsreader", "serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+      }
+      .serif-italic { font-family: 'Newsreader', serif; font-style: italic; }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+      /* Language Toggle Logic */
+      body.lang-en [lang-data="es"] { display: none !important; }
+      body.lang-es [lang-data="en"] { display: none !important; }
+      
+      .lang-switch-active { color: #D4AF37 !important; font-weight: 700; }
+    </style>
+</head>
+<body class="lang-en bg-surface text-on-surface font-body selection:bg-tertiary-container selection:text-on-tertiary-container">
+<header class="w-full border-b border-outline-variant/20 bg-surface/95 backdrop-blur sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-6 md:px-12 py-5 flex items-center justify-between gap-6">
+    <a class="text-xl md:text-2xl font-headline tracking-wide text-on-surface hover:text-gold transition-colors" href="index.html">
+      Chiaramonte <span class="text-gold">Corporate Advisory</span>
+    </a>
+    <div class="flex items-center gap-5">
+      <a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="index.html" lang-data="en">Back to Home</a>
+      <a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="index.html" lang-data="es">Volver al Inicio</a>
+      <div class="flex items-center gap-3 border border-outline-variant/30 px-3 py-2 text-xs tracking-widest uppercase">
+        <button class="lang-switch-active hover:text-gold transition-colors uppercase" id="btn-en" onclick="setLanguage('en')" type="button">EN</button>
+        <span class="text-outline-variant">/</span>
+        <button class="text-outline-variant hover:text-gold transition-colors uppercase" id="btn-es" onclick="setLanguage('es')" type="button">ES</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="py-20 md:py-24 px-6 md:px-12 bg-surface-container-low">
+    <div class="max-w-4xl mx-auto">
+      <div class="mb-14">
+        <span class="text-gold text-xs tracking-[0.2em] uppercase font-bold block mb-4">Legal</span>
+        <h1 class="text-4xl md:text-6xl font-headline text-on-surface mb-4" lang-data="en">Privacy <span class="serif-italic">Policy</span></h1>
+        <h1 class="text-4xl md:text-6xl font-headline text-on-surface mb-4" lang-data="es">Política de <span class="serif-italic">Privacidad</span></h1>
+        <p class="text-sm text-on-surface-variant" lang-data="en">Last updated: 03/22/2026</p>
+        <p class="text-sm text-on-surface-variant" lang-data="es">Última actualización: 22/03/2026</p>
+      </div>
+
+      <div class="space-y-10 text-on-surface-variant leading-relaxed">
+        <div lang-data="en">
+          <p>
+            At <strong class="text-on-surface">Luciano Chiaramonte</strong>, confidentiality, professional discretion, and responsible information handling are treated as core principles. This Privacy Policy explains what personal data may be collected through this website, the purposes for which it may be used, and how individuals may exercise their rights in relation to such information.
+          </p>
+        </div>
+        <div lang-data="es">
+          <p>
+            En <strong class="text-on-surface">Luciano Chiaramonte</strong>, la confidencialidad, la reserva profesional y el tratamiento responsable de la información son principios centrales. La presente Política de Privacidad describe qué datos personales pueden recopilarse a través de este sitio web, con qué finalidad se utilizan y cómo pueden ejercerse los derechos vinculados a dicha información.
+          </p>
+        </div>
+
+        <div lang-data="en">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">1. Data Controller</h2>
+          <p>The person responsible for the processing of personal data collected through this website is:</p>
+          <p class="mt-3">
+            <strong class="text-on-surface">Luciano Chiaramonte</strong><br/>
+            CUIL: 20-33545313-2<br/>
+            Legal address: Junín 360 PB 3, Ciudad Autónoma de Buenos Aires, Argentina<br/>
+            Contact email: chiaramonteluciano@hotmail.com
+          </p>
+        </div>
+        <div lang-data="es">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">1. Responsable del tratamiento</h2>
+          <p>El responsable del tratamiento de los datos personales recolectados a través de este sitio es:</p>
+          <p class="mt-3">
+            <strong class="text-on-surface">Luciano Chiaramonte</strong><br/>
+            CUIL: 20-33545313-2<br/>
+            Domicilio legal: Junín 360 PB 3, Ciudad Autónoma de Buenos Aires, Argentina<br/>
+            Correo de contacto: chiaramonteluciano@hotmail.com
+          </p>
+        </div>
+
+        <div lang-data="en">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">2. Data That May Be Collected</h2>
+          <p>Through the contact form and the contact channels displayed on this website, information such as name, company, email address, phone number, reason for inquiry, and any other information voluntarily provided by the user may be collected.</p>
+        </div>
+        <div lang-data="es">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">2. Datos que pueden recopilarse</h2>
+          <p>A través del formulario de contacto y de los medios de contacto publicados en este sitio, podrán recopilarse datos tales como nombre y apellido, empresa, correo electrónico, teléfono, motivo de consulta y cualquier otra información que el usuario decida incluir voluntariamente en su mensaje.</p>
+        </div>
+
+        <div lang-data="en">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">3. Purpose of Processing</h2>
+          <p>The information received will be used exclusively to respond to inquiries, assess potential professional or commercial needs, communicate with individuals interested in the services offered, and maintain basic traceability of incoming communications.</p>
+        </div>
+        <div lang-data="es">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">3. Finalidad del tratamiento</h2>
+          <p>La información recibida será utilizada exclusivamente para responder consultas, evaluar potenciales requerimientos profesionales o comerciales, mantener comunicación con personas interesadas en los servicios ofrecidos y conservar trazabilidad básica de las comunicaciones recibidas.</p>
+        </div>
+
+        <div lang-data="en">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">4. Voluntary Submission of Information</h2>
+          <p>Submitting data through the contact form, email, WhatsApp, or any other contact channel published on this website is a voluntary action by the user. Users are advised not to send sensitive information, credentials, trade secrets, restricted documents, or confidential material not expressly requested at the initial contact stage.</p>
+        </div>
+        <div lang-data="es">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">4. Envío voluntario de información</h2>
+          <p>El envío de datos a través del formulario de contacto, correo electrónico, WhatsApp u otros medios publicados en este sitio implica una acción voluntaria por parte del usuario. Se recomienda no remitir información sensible, credenciales, secretos comerciales, documentación reservada ni material confidencial no solicitado en una primera instancia de contacto.</p>
+        </div>
+
+        <div lang-data="en">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">5. Form Processing Provider</h2>
+          <p>This website uses third-party services to process and deliver contact form submissions. Accordingly, the information entered may be technically processed by such provider solely for the purpose of enabling proper delivery of the inquiry.</p>
+        </div>
+        <div lang-data="es">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">5. Proveedor del formulario</h2>
+          <p>Este sitio utiliza servicios de terceros para procesar y remitir los formularios de contacto. En consecuencia, la información ingresada podrá ser procesada técnicamente por dicho proveedor con el único fin de permitir la correcta recepción de la consulta.</p>
+        </div>
+
+        <div lang-data="en">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">6. Confidentiality</h2>
+          <p>Every inquiry received will be handled with professional discretion. However, sending a message through this website does not by itself create a contractual relationship, acceptance of services, or any automatic specific confidentiality obligation beyond the reasonable professional discretion applied to an initial contact.</p>
+        </div>
+        <div lang-data="es">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">6. Confidencialidad</h2>
+          <p>Toda consulta recibida será tratada con criterio de confidencialidad profesional. No obstante, el envío de un mensaje a través de este sitio no constituye por sí mismo una relación contractual, una aceptación de servicio ni la existencia automática de una obligación específica de confidencialidad distinta de la razonable reserva profesional aplicada al contacto inicial.</p>
+        </div>
+
+        <div lang-data="en">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">7. Disclosure of Data</h2>
+          <p>Personal data is not sold or commercially distributed. Information may only be shared where necessary for the technical operation of the website, where legally required, or where necessary to protect rights, safety, or integrity.</p>
+        </div>
+        <div lang-data="es">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">7. Cesión o divulgación de datos</h2>
+          <p>No se venden ni comercializan datos personales. La información podrá ser compartida únicamente cuando resulte necesario para el funcionamiento técnico del sitio, cuando exista obligación legal o requerimiento de autoridad competente, o cuando ello resulte necesario para proteger derechos, seguridad o integridad.</p>
+        </div>
+
+        <div lang-data="en">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">8. Data Retention</h2>
+          <p>Data will be retained for the period reasonably necessary to respond to the inquiry, maintain communication records, and address any subsequent exchanges related to the services offered.</p>
+        </div>
+        <div lang-data="es">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">8. Conservación de la información</h2>
+          <p>Los datos serán conservados durante el tiempo razonablemente necesario para responder la consulta, mantener registro de comunicaciones y atender eventuales intercambios posteriores vinculados con los servicios ofrecidos.</p>
+        </div>
+
+        <div lang-data="en">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">9. Security</h2>
+          <p>Reasonable measures are adopted to protect the information received and reduce the risk of unauthorized access, loss, alteration, or improper disclosure. However, no system that transmits or stores data over the internet can guarantee absolute security.</p>
+        </div>
+        <div lang-data="es">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">9. Seguridad</h2>
+          <p>Se adoptan medidas razonables para resguardar la información recibida y reducir riesgos de acceso no autorizado, pérdida, alteración o divulgación indebida. Sin embargo, ningún sistema que transmita o almacene datos por internet puede garantizar seguridad absoluta.</p>
+        </div>
+
+        <div lang-data="en">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">10. Data Subject Rights</h2>
+          <p>Any individual may request access to, rectification, updating, or deletion of their personal data by contacting <strong class="text-on-surface">chiaramonteluciano@hotmail.com</strong>.</p>
+        </div>
+        <div lang-data="es">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">10. Derechos del titular</h2>
+          <p>Toda persona podrá solicitar el acceso, rectificación, actualización o supresión de sus datos escribiendo a <strong class="text-on-surface">chiaramonteluciano@hotmail.com</strong>.</p>
+        </div>
+
+        <div lang-data="en">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">11. Third-Party Links</h2>
+          <p>This website may include links to third-party platforms or services, including email, WhatsApp, or LinkedIn. The use of such services is subject to the policies and terms of each respective platform.</p>
+        </div>
+        <div lang-data="es">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">11. Enlaces a terceros</h2>
+          <p>Este sitio puede incluir enlaces a plataformas o servicios de terceros, como correo electrónico, WhatsApp o LinkedIn. El uso de dichos servicios se encuentra sujeto a las políticas y condiciones de cada plataforma.</p>
+        </div>
+
+        <div lang-data="en">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">12. Changes</h2>
+          <p>This Privacy Policy may be updated or modified at any time to reflect operational, technological, commercial, or discretionary changes. The version in force will always be the one published on this website.</p>
+        </div>
+        <div lang-data="es">
+          <h2 class="text-xl md:text-2xl font-headline text-on-surface mb-3">12. Modificaciones</h2>
+          <p>Esta Política de Privacidad podrá ser actualizada o modificada en cualquier momento para reflejar cambios operativos, tecnológicos, comerciales o de criterio. La versión vigente será siempre la publicada en este sitio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="w-full px-6 md:px-12 py-14 flex flex-col md:flex-row justify-between items-start gap-10 bg-[#0a0a0a] text-white">
+  <div class="max-w-sm">
+    <div class="text-2xl font-headline text-gold mb-5">Chiaramonte</div>
+    <p class="text-sm leading-relaxed text-outline-variant serif-italic" lang-data="en">
+      Specialized advisory in traceability and operational structure for organizations with high-fidelity mandates.
+    </p>
+    <p class="text-sm leading-relaxed text-outline-variant serif-italic" lang-data="es">
+      Advisory especializado en la mejora de la trazabilidad y la estructura operativa para organizaciones con mandatos de alta fidelidad.
+    </p>
+  </div>
+  <div class="flex flex-col gap-4">
+    <a class="text-sm text-outline-variant hover:text-gold transition-all" href="index.html" lang-data="en">Back to Home</a>
+    <a class="text-sm text-outline-variant hover:text-gold transition-all" href="index.html" lang-data="es">Volver al Inicio</a>
+    <a class="text-sm text-outline-variant hover:text-gold transition-all" href="mailto:chiaramonteluciano@hotmail.com">Email</a>
+    <a class="text-sm text-outline-variant hover:text-gold transition-all" href="https://wa.me/5491158625516">WhatsApp</a>
+    <a class="text-sm text-outline-variant hover:text-gold transition-all" href="https://www.linkedin.com/in/lchiaramonte-/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </div>
+  <div class="w-full md:w-auto flex flex-col items-start md:items-end">
+    <p class="text-xs text-outline-variant mb-2">© 2026 Chiaramonte Corporate Advisory. All Rights Reserved.</p>
+    <p class="text-[10px] tracking-widest uppercase text-gold font-bold" lang-data="en">Confidentiality Guaranteed.</p>
+    <p class="text-[10px] tracking-widest uppercase text-gold font-bold" lang-data="es">Confidencialidad Garantizada.</p>
+  </div>
+</footer>
+
+<script>
+  function updateLanguageButtons(activeLang) {
+    ['btn-en', 'btn-es'].forEach((id) => {
+      const button = document.getElementById(id);
+      if (!button) return;
+      const isEnglishButton = id.includes('en');
+      const isActive = (activeLang === 'en' && isEnglishButton) || (activeLang === 'es' && !isEnglishButton);
+      button.classList.toggle('lang-switch-active', isActive);
+      button.classList.toggle('text-outline-variant', !isActive);
+    });
+  }
+
+  function setLanguage(lang) {
+    document.body.classList.remove('lang-en', 'lang-es');
+    document.body.classList.add('lang-' + lang);
+    document.documentElement.lang = lang;
+    updateLanguageButtons(lang);
+  }
+
+  updateLanguageButtons(document.body.classList.contains('lang-es') ? 'es' : 'en');
+</script>
+</body>
+</html>
