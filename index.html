@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Chiaramonte Corporate Advisory | Structure, Traceability &amp; Decision</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,700;1,6..72,400;1,6..72,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "gold": "#D4AF37",
+              "secondary-dim": "#445567",
+              "error-container": "#fe8983",
+              "tertiary-fixed-dim": "#ecc479",
+              "on-surface-variant": "#5e5f5f",
+              "tertiary-dim": "#6b4e0e",
+              "on-tertiary-fixed-variant": "#6c500f",
+              "primary-container": "#e5e2e1",
+              "on-background": "#313333",
+              "outline-variant": "#b2b2b2",
+              "primary-dim": "#535252",
+              "surface-container-low": "#f5f3f3",
+              "on-primary-fixed": "#403f3f",
+              "surface-dim": "#dadada",
+              "on-secondary-container": "#425366",
+              "on-error-container": "#752121",
+              "on-error": "#fff7f6",
+              "outline": "#7a7b7b",
+              "surface-bright": "#fcf9f8",
+              "surface-container-highest": "#e3e2e2",
+              "surface-tint": "#5f5e5e",
+              "on-tertiary-fixed": "#4a3400",
+              "on-secondary-fixed": "#304153",
+              "inverse-surface": "#0e0e0e",
+              "primary-fixed": "#e5e2e1",
+              "secondary-fixed": "#d2e4fb",
+              "tertiary-container": "#fbd185",
+              "tertiary-fixed": "#fbd185",
+              "on-secondary-fixed-variant": "#4c5d70",
+              "error-dim": "#4e0309",
+              "primary": "#5f5e5e",
+              "error": "#9f403d",
+              "on-secondary": "#f7f9ff",
+              "surface-container-high": "#e9e8e8",
+              "on-primary-fixed-variant": "#5c5b5b",
+              "surface-variant": "#e3e2e2",
+              "inverse-primary": "#ffffff",
+              "on-primary-container": "#525151",
+              "primary-fixed-dim": "#d7d4d3",
+              "on-tertiary": "#fff8f1",
+              "surface-container": "#efeded",
+              "on-surface": "#313333",
+              "secondary": "#506174",
+              "secondary-container": "#d2e4fb",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-container": "#624604",
+              "on-primary": "#faf7f6",
+              "inverse-on-surface": "#9e9c9c",
+              "tertiary": "#785a1a",
+              "background": "#fcf9f8",
+              "surface": "#fcf9f8",
+              "secondary-fixed-dim": "#c4d6ed"
+            },
+            fontFamily: {
+              "headline": ["Newsreader", "serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+      }
+      .serif-italic { font-family: 'Newsreader', serif; font-style: italic; }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+      /* Language Toggle Logic */
+      body.lang-en [lang-data="es"] { display: none !important; }
+      body.lang-es [lang-data="en"] { display: none !important; }
+      
+      .lang-switch-active { color: #D4AF37 !important; font-weight: 700; }
+    </style>
+</head>
+<body class="lang-en bg-surface text-on-surface font-body selection:bg-tertiary-container selection:text-on-tertiary-container">
+<!-- TopAppBar -->
+<header class="bg-surface/80 backdrop-blur-xl fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-12 py-6 z-50">
+<div class="text-xl font-headline tracking-tighter text-on-surface">
+            Chiaramonte Corporate Advisory
+        </div>
+<nav class="hidden md:flex gap-10 items-center">
+<!-- English Nav -->
+<a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="#about" lang-data="en">About the Firm</a>
+<a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="#services" lang-data="en">Services</a>
+<a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="#methodology" lang-data="en">How We Work</a>
+<a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="#contact" lang-data="en">Contact</a>
+<!-- Spanish Nav -->
+<a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="#about" lang-data="es">Sobre la Firma</a>
+<a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="#services" lang-data="es">Servicios</a>
+<a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="#methodology" lang-data="es">Cómo Trabajamos</a>
+<a class="text-on-surface-variant hover:text-gold transition-colors text-xs tracking-widest uppercase" href="#contact" lang-data="es">Contacto</a>
+<!-- Language Switcher -->
+<div class="flex items-center gap-2 border-l border-outline-variant/30 pl-8 text-[10px] tracking-widest font-bold">
+<button class="lang-switch-active hover:text-gold transition-colors uppercase" id="btn-en" onclick="setLanguage('en')">EN</button>
+<span class="text-outline-variant">|</span>
+<button class="text-outline-variant hover:text-gold transition-colors uppercase" id="btn-es" onclick="setLanguage('es')">ES</button>
+</div>
+</nav>
+<a class="bg-primary text-on-primary px-8 py-3 text-xs tracking-widest uppercase font-medium hover:opacity-80 transition-all inline-block" href="#contact">
+<span lang-data="en">Confidential Consultation</span>
+<span lang-data="es">Consulta Confidencial</span>
+</a>
+</header>
+<main>
+<!-- Home Hero -->
+<section class="relative min-h-screen flex items-center pt-24 px-6 md:px-12 overflow-hidden">
+<div class="absolute inset-0 z-0 bg-gradient-to-br from-primary-container/20 to-surface"></div>
+<div class="absolute right-0 top-0 w-1/2 h-full opacity-10 md:opacity-20 z-0">
+<img alt="Modern architectural glass building facade" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD57KVcc3DkXPzYmd_mrx16pSqgCPhOvieKw3bubqNenCv8sK8EDqr-rIfvqdj3-ycU-XJSgWvrSVu-fVUlaRTrbitdTzbreINvWZGscZrOjM-tRxY2Hc24VLnULyT4rdHyhZsBK-5zEmrYEqHvQapIZHj-cyiC86XdB6i3zEwW9ZQuQYD2ACzuhhLiHSdWg9sNgAufrjibas3ObrMSZ0ng5ePjnMIWZ7y9bU_WbFH7kGjLYG2WTZhNymasa0VPQyFCxmNIr7vrjaFV"/>
+</div>
+<div class="relative z-10 max-w-5xl">
+<!-- English -->
+<div lang-data="en">
+<h1 class="text-5xl md:text-7xl font-headline leading-[1.1] mb-8 text-on-surface">
+                        Where others see operational noise, we see <span class="serif-italic">structure, traceability, and decision.</span>
+</h1>
+<p class="text-xl md:text-2xl text-on-surface-variant max-w-2xl leading-relaxed mb-12">
+                        Boutique advisory and operational improvement for high-stakes environments. Executive judgment, authority, and absolute confidentiality.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-6">
+<a class="bg-primary text-on-primary px-10 py-5 text-sm tracking-widest uppercase font-bold text-center" href="#contact">
+                            Request confidential consultation
+                        </a>
+</div>
+</div>
+<!-- Spanish -->
+<div lang-data="es">
+<h1 class="text-5xl md:text-7xl font-headline leading-[1.1] mb-8 text-on-surface">
+                        Donde otros ven ruido operativo, nosotros vemos <span class="serif-italic">estructura, trazabilidad y decisión.</span>
+</h1>
+<p class="text-xl md:text-2xl text-on-surface-variant max-w-2xl leading-relaxed mb-12">
+                        Boutique en advisory y mejora operativa para empresas con operaciones sensibles. Criterio ejecutivo, autoridad y confidencialidad absoluta.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-6">
+<a class="bg-primary text-on-primary px-10 py-5 text-sm tracking-widest uppercase font-bold text-center" href="#contact">
+                            Solicitar consulta confidencial
+                        </a>
+</div>
+</div>
+</div>
+</section>
+<!-- About the Firm -->
+<section class="py-32 px-6 md:px-12 bg-surface" id="about">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+<div class="md:col-span-4">
+<span class="text-gold text-xs tracking-[0.2em] uppercase font-bold" lang-data="en">The Firm</span>
+<span class="text-gold text-xs tracking-[0.2em] uppercase font-bold" lang-data="es">La Firma</span>
+</div>
+<div class="md:col-span-8">
+<!-- English -->
+<div lang-data="en">
+<h2 class="text-4xl md:text-5xl font-headline mb-12 leading-tight">
+                            Boutique excellence in operational control, traceability, and <span class="serif-italic">business continuity.</span>
+</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-16">
+<p class="text-on-surface-variant leading-relaxed">
+                                We specialize in high-value interventions where external judgment and discretion are paramount. We review sensitive processes to ensure leadership holds reliable information for critical decision-making.
+                            </p>
+<p class="text-on-surface-variant leading-relaxed">
+                                Our approach is structural, not cosmetic. We resolve operational disorder by implementing visibility and control frameworks that ensure absolute traceability at every link of the value chain.
+                            </p>
+</div>
+</div>
+<!-- Spanish -->
+<div lang-data="es">
+<h2 class="text-4xl md:text-5xl font-headline mb-12 leading-tight">
+                            Boutique en control operativo, trazabilidad y <span class="serif-italic">continuidad de negocio.</span>
+</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-16">
+<p class="text-on-surface-variant leading-relaxed">
+                                Nos especializamos en intervenciones de alto valor donde el juicio externo y la discreción son fundamentales. Revisamos procesos sensibles para garantizar que la dirección cuente con información fidedigna para la toma de decisiones críticas.
+                            </p>
+<p class="text-on-surface-variant leading-relaxed">
+                                Nuestro enfoque no es cosmético; es estructural. Resolvemos el desorden operativo mediante la implementación de marcos de visibilidad y control que aseguran la trazabilidad absoluta en cada eslabón de la cadena de valor.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Founder Section (Exactly as in source) -->
+<section class="py-32 px-6 md:px-12 bg-surface-container-low border-y border-outline-variant/10" id="founder">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+<div class="lg:col-span-4 flex flex-col">
+<span class="text-tertiary text-xs tracking-[0.2em] uppercase font-bold mb-6" lang-data="en">The Founder</span>
+<span class="text-tertiary text-xs tracking-[0.2em] uppercase font-bold mb-6" lang-data="es">El Fundador</span>
+<h2 class="text-5xl font-headline text-on-surface mb-4">Luciano <span class="serif-italic">Chiaramonte</span></h2>
+<div class="h-1 w-20 bg-tertiary/30 mb-8"></div>
+<p class="text-sm tracking-wide font-semibold text-on-surface leading-relaxed" lang-data="es">
+                            Perfil ejecutivo orientado a control operativo, trazabilidad, continuidad, lectura de riesgos y ordenamiento de estructuras sensibles.
+                        </p>
+<p class="text-sm tracking-wide font-semibold text-on-surface leading-relaxed" lang-data="en">
+                            Executive profile focused on operational control, traceability, continuity, risk assessment, and sensitive structure organization.
+                        </p>
+</div>
+<div class="lg:col-span-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+<!-- Expertise & Approach -->
+<div class="space-y-6">
+<h3 class="text-xs tracking-widest uppercase font-bold text-tertiary border-b border-tertiary/10 pb-2">Expertise &amp; Approach</h3>
+<div class="space-y-4">
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="es">
+                                        Luciano trabaja sobre lo que muchas organizaciones detectan tarde: puntos ciegos, desvíos, ruido operativo, trazabilidad débil, documentación inconsistente y decisiones tomadas con información incompleta.
+                                    </p>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="es">
+                                        Su aporte combina criterio ejecutivo, mirada estructural y capacidad para transformar complejidad dispersa en orden, visibilidad y respaldo.
+                                    </p>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="en">
+                                        Luciano addresses what many organizations detect too late: blind spots, deviations, operational noise, weak traceability, inconsistent documentation, and decisions made with incomplete information.
+                                    </p>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="en">
+                                        His contribution combines executive judgment, a structural gaze, and the ability to transform dispersed complexity into order, visibility, and support.
+                                    </p>
+</div>
+</div>
+<!-- Professional Logic -->
+<div class="space-y-6">
+<h3 class="text-xs tracking-widest uppercase font-bold text-tertiary border-b border-tertiary/10 pb-2">Professional Logic</h3>
+<div class="space-y-4">
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="es">
+                                        No se posiciona como un proveedor de tareas sueltas, sino como un advisor con criterio para leer mejor, preguntar mejor y ordenar mejor. La práctica está construida sobre confidencialidad, precisión y lectura de contexto.
+                                    </p>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="es">
+                                        Su recorrido cruza operación real, control, continuidad y documentación. Esa combinación le permite intervenir con una lógica de criterio aplicable sobre lo que de verdad afecta la decisión.
+                                    </p>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="en">
+                                        He doesn't position himself as a provider of isolated tasks, but as an advisor with the judgment to read better, ask better, and organize better. The practice is built on confidentiality, precision, and context awareness.
+                                    </p>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="en">
+                                        His background crosses real operations, control, continuity, and documentation. This combination allows him to intervene with an applicable judgment logic on what truly affects decision-making.
+                                    </p>
+</div>
+</div>
+<!-- Standard of Value -->
+<div class="md:col-span-2 space-y-6">
+<h3 class="text-xs tracking-widest uppercase font-bold text-tertiary border-b border-tertiary/10 pb-2">Standard of Value</h3>
+<p class="text-lg font-headline leading-relaxed text-on-surface serif-italic" lang-data="es">
+                                    "La propuesta de valor es simple: claridad donde hay zonas grises, estructura donde hay dependencia de memoria o improvisación, y criterio donde otros solo ven volumen de trabajo. El resultado buscado no es solo que algo funcione, sino que funcione con nivel, trazabilidad y capacidad real de ser defendido."
+                                </p>
+<p class="text-lg font-headline leading-relaxed text-on-surface serif-italic" lang-data="en">
+                                    "The value proposition is simple: clarity where there are gray areas, structure where there is reliance on memory or improvisation, and judgment where others only see volume of work. The desired result is not just for something to work, but for it to work with excellence, traceability, and a real capacity to be defended."
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services -->
+<section class="py-24 px-6 md:px-12 bg-surface" id="services">
+<div class="mb-16">
+<h2 class="text-4xl md:text-5xl font-headline mb-4" lang-data="en">Services</h2>
+<h2 class="text-4xl md:text-5xl font-headline mb-4" lang-data="es">Servicios</h2>
+<div class="h-px bg-outline-variant/30 w-full"></div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+<!-- Column 1: Premium -->
+<div class="flex flex-col border-r border-outline-variant/10 lg:pr-6 last:border-0">
+<h3 class="text-gold text-[10px] tracking-widest uppercase font-bold border-b border-gold/20 pb-3 mb-8">Premium Services</h3>
+<ul class="space-y-8">
+<li class="group flex flex-col">
+<h4 class="text-xl font-headline mb-2" lang-data="en">Control &amp; Visibility Audit</h4>
+<h4 class="text-xl font-headline mb-2" lang-data="es">Diagnóstico de Control y Visibilidad</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="en">Deep-dive auditing of internal process transparency and accountability.</p>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="es">Auditoría profunda de la transparencia en los procesos internos.</p>
+</li>
+<li class="group flex flex-col">
+<h4 class="text-xl font-headline mb-2" lang-data="en">External Operations Enhancement</h4>
+<h4 class="text-xl font-headline mb-2" lang-data="es">Mejora Operaciones Externas</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="en">Optimization of workflows in decentralized or remote locations.</p>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="es">Optimización de flujos de trabajo en locaciones descentralizadas.</p>
+</li>
+<li class="group flex flex-col">
+<h4 class="text-xl font-headline mb-2" lang-data="en">Incident &amp; Escalation Review</h4>
+<h4 class="text-xl font-headline mb-2" lang-data="es">Revisión Incidentes/Escalamiento</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="en">Forensic analysis of failures and critical response protocols.</p>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="es">Análisis forense de fallos y protocolos de respuesta crítica.</p>
+</li>
+<li class="group flex flex-col">
+<h4 class="text-xl font-headline mb-2" lang-data="en">Sensitive Process Structuring</h4>
+<h4 class="text-xl font-headline mb-2" lang-data="es">Ordenamiento Procesos Sensibles</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="en">High-impact task organization with strict confidentiality requirements.</p>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="es">Estructuración de tareas de alto impacto y confidencialidad.</p>
+</li>
+</ul>
+</div>
+<!-- Column 2: General -->
+<div class="flex flex-col border-r border-outline-variant/10 lg:pr-6 last:border-0">
+<h3 class="text-gold text-[10px] tracking-widest uppercase font-bold border-b border-gold/20 pb-3 mb-8" lang-data="en">General Services</h3>
+<h3 class="text-gold text-[10px] tracking-widest uppercase font-bold border-b border-gold/20 pb-3 mb-8" lang-data="es">Servicios Generales</h3>
+<ul class="space-y-8">
+<li class="group flex flex-col">
+<h4 class="text-xl font-headline mb-2" lang-data="en">Critical Task Documentation</h4>
+<h4 class="text-xl font-headline mb-2" lang-data="es">Documentación Tareas Críticas</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="en">Formalization of key processes to ensure repeatability and control.</p>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="es">Formalización de procesos clave para asegurar la repetibilidad y el control.</p>
+</li>
+<li class="group flex flex-col">
+<h4 class="text-xl font-headline mb-2" lang-data="en">Role &amp; Circuit Clarification</h4>
+<h4 class="text-xl font-headline mb-2" lang-data="es">Clarificación Roles/Circuitos</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="en">Eliminating gray zones in the chain of command and operational execution.</p>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="es">Eliminación de zonas grises en la cadena de mando y ejecución operativa.</p>
+</li>
+<li class="group flex flex-col">
+<h4 class="text-xl font-headline mb-2" lang-data="en">Monitoring &amp; Tracking Systems</h4>
+<h4 class="text-xl font-headline mb-2" lang-data="es">Herramientas Seguimiento</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="en">Implementation of dashboards and registries for real-time oversight.</p>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="es">Implementación de tableros y registros para una supervisión en tiempo real.</p>
+</li>
+<li class="group flex flex-col">
+<h4 class="text-xl font-headline mb-2" lang-data="en">Disorder Diagnosis</h4>
+<h4 class="text-xl font-headline mb-2" lang-data="es">Diagnóstico Desorden</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="en">Assessment of current operational state and identification of hidden inefficiencies.</p>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="es">Evaluación del estado actual de la operación y detección de ineficiencias.</p>
+</li>
+</ul>
+</div>
+<!-- Column 3: Modular -->
+<div class="flex flex-col h-full last:border-0">
+<h3 class="text-gold text-[10px] tracking-widest uppercase font-bold border-b border-gold/20 pb-3 mb-8" lang-data="en">Modular Services</h3>
+<h3 class="text-gold text-[10px] tracking-widest uppercase font-bold border-b border-gold/20 pb-3 mb-8" lang-data="es">Servicios Modulares</h3>
+<ul class="space-y-8">
+<li class="group flex flex-col">
+<h4 class="text-xl font-headline mb-2" lang-data="en">Standard Operating Procedures</h4>
+<h4 class="text-xl font-headline mb-2" lang-data="es">Procedimientos Estándar</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="en">Creation of detailed operation manuals that eliminate ambiguity.</p>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="es">Creación de manuales de operación detallados que eliminan la ambigüedad.</p>
+</li>
+<li class="group flex flex-col">
+<h4 class="text-xl font-headline mb-2" lang-data="en">Registry &amp; Data Regularization</h4>
+<h4 class="text-xl font-headline mb-2" lang-data="es">Regularización Planillas/Registros</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="en">Data cleansing and record digitization for real traceability.</p>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="es">Saneamiento de datos y digitalización de registros para una trazabilidad real.</p>
+</li>
+<li class="group flex flex-col">
+<h4 class="text-xl font-headline mb-2" lang-data="en">Post-Intervention Support</h4>
+<h4 class="text-xl font-headline mb-2" lang-data="es">Soporte Post-Intervención</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="en">Dedicated accompaniment during the adoption phase of new structures.</p>
+<p class="text-sm text-on-surface-variant leading-relaxed" lang-data="es">Acompañamiento en la fase de adopción de las nuevas estructuras operativas.</p>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Corporate Advisory (Exclusive Highlight) -->
+<section class="py-32 px-6 md:px-12 bg-inverse-surface text-on-primary">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+<div class="max-w-2xl">
+<span class="text-gold text-xs tracking-[0.3em] uppercase font-bold mb-6 block" lang-data="en">Exclusive Advisory</span>
+<span class="text-gold text-xs tracking-[0.3em] uppercase font-bold mb-6 block" lang-data="es">Asesoramiento Exclusivo</span>
+<h2 class="text-5xl md:text-7xl font-headline leading-tight">Corporate <span class="serif-italic text-gold">Advisory</span></h2>
+</div>
+<div class="md:pb-4">
+<p class="text-outline-variant text-lg max-w-xs mb-0" lang-data="en">The highest tier of intervention for top-level leadership.</p>
+<p class="text-outline-variant text-lg max-w-xs mb-0" lang-data="es">El nivel más alto de intervención para la alta dirección.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 items-start">
+<div class="flex flex-col">
+<h3 class="text-xl font-headline text-gold mb-6 min-h-[3.5rem] flex items-start">Executive Operational Advisory</h3>
+<p class="text-sm text-outline-variant leading-relaxed" lang-data="en">Direct consultancy for CEOs and Boards on the firm's operational health.</p>
+<p class="text-sm text-outline-variant leading-relaxed" lang-data="es">Consultoría directa para CEOs y Directorios sobre la salud operativa de la firma.</p>
+</div>
+<div class="flex flex-col">
+<h3 class="text-xl font-headline text-gold mb-6 min-h-[3.5rem] flex items-start">Risk / Continuity / Traceability</h3>
+<p class="text-sm text-outline-variant leading-relaxed" lang-data="en">Ensuring operational resilience across critical scenarios.</p>
+<p class="text-sm text-outline-variant leading-relaxed" lang-data="es">Aseguramiento de la resiliencia operativa ante escenarios críticos.</p>
+</div>
+<div class="flex flex-col">
+<div class="mb-6 min-h-[3.5rem] flex items-start">
+<h3 class="text-xl font-headline text-gold" lang-data="en">Sensitive Executive Review</h3>
+<h3 class="text-xl font-headline text-gold" lang-data="es">Executive Review Sensible</h3>
+</div>
+<p class="text-sm text-outline-variant leading-relaxed" lang-data="en">Discreet review of critical areas under suspicion of inefficiency or risk.</p>
+<p class="text-sm text-outline-variant leading-relaxed" lang-data="es">Revisión discreta de áreas críticas bajo sospecha de ineficiencia o riesgo.</p>
+</div>
+<div class="flex flex-col">
+<div class="mb-6 min-h-[3.5rem] flex items-start">
+<h3 class="text-xl font-headline text-gold" lang-data="en">Advanced Documentation &amp; Reporting</h3>
+<h3 class="text-xl font-headline text-gold" lang-data="es">Documentation / Reporting</h3>
+</div>
+<p class="text-sm text-outline-variant leading-relaxed" lang-data="en">Decision support based on structured, high-fidelity reportability.</p>
+<p class="text-sm text-outline-variant leading-relaxed" lang-data="es">Soporte avanzado para la decisión basado en reportabilidad estructurada.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Methodology -->
+<section class="py-32 px-6 md:px-12 bg-surface" id="methodology">
+<div class="max-w-4xl mb-24">
+<span class="text-gold text-xs tracking-widest uppercase font-bold block mb-4" lang-data="en">Methodology</span>
+<span class="text-gold text-xs tracking-widest uppercase font-bold block mb-4" lang-data="es">Metodología</span>
+<h2 class="text-4xl md:text-5xl font-headline" lang-data="en">A process engineered for <span class="serif-italic">executive clarity.</span></h2>
+<h2 class="text-4xl md:text-5xl font-headline" lang-data="es">Un proceso diseñado para la <span class="serif-italic">claridad ejecutiva.</span></h2>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-start gap-12 relative">
+<div class="hidden md:block absolute top-12 left-0 w-full h-px bg-outline-variant/20 z-0"></div>
+<!-- Step 1 -->
+<div class="relative z-10 flex-1 group">
+<div class="w-2 h-2 bg-gold mb-10 group-hover:scale-150 transition-transform"></div>
+<h4 class="font-bold text-xs tracking-widest uppercase mb-4" lang-data="en">01. Diagnosis</h4>
+<h4 class="font-bold text-xs tracking-widest uppercase mb-4" lang-data="es">01. Diagnóstico</h4>
+<p class="text-sm text-on-surface-variant" lang-data="en">Identification of blind spots and operational noise.</p>
+<p class="text-sm text-on-surface-variant" lang-data="es">Identificación de puntos ciegos y ruidos operativos.</p>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex-1 group">
+<div class="w-2 h-2 bg-outline mb-10 group-hover:bg-gold transition-colors"></div>
+<h4 class="font-bold text-xs tracking-widest uppercase mb-4" lang-data="en">02. Assessment</h4>
+<h4 class="font-bold text-xs tracking-widest uppercase mb-4" lang-data="es">02. Relevamiento</h4>
+<p class="text-sm text-on-surface-variant" lang-data="en">Technical immersion into the real operational flow.</p>
+<p class="text-sm text-on-surface-variant" lang-data="es">Inmersión técnica en el flujo real de la operación.</p>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex-1 group">
+<div class="w-2 h-2 bg-outline mb-10 group-hover:bg-gold transition-colors"></div>
+<h4 class="font-bold text-xs tracking-widest uppercase mb-4" lang-data="en">03. Analysis</h4>
+<h4 class="font-bold text-xs tracking-widest uppercase mb-4" lang-data="es">03. Análisis</h4>
+<p class="text-sm text-on-surface-variant" lang-data="en">Evaluation of traceability and detected risks.</p>
+<p class="text-sm text-on-surface-variant" lang-data="es">Evaluación de trazabilidad y riesgos detectados.</p>
+</div>
+<!-- Step 4 -->
+<div class="relative z-10 flex-1 group">
+<div class="w-2 h-2 bg-outline mb-10 group-hover:bg-gold transition-colors"></div>
+<h4 class="font-bold text-xs tracking-widest uppercase mb-4" lang-data="en">04. Findings</h4>
+<h4 class="font-bold text-xs tracking-widest uppercase mb-4" lang-data="es">04. Hallazgos</h4>
+<p class="text-sm text-on-surface-variant" lang-data="en">Presentation of operational realities without filter.</p>
+<p class="text-sm text-on-surface-variant" lang-data="es">Presentación de realidades operativas sin filtro.</p>
+</div>
+<!-- Step 5 -->
+<div class="relative z-10 flex-1 group">
+<div class="w-2 h-2 bg-gold mb-10"></div>
+<h4 class="font-bold text-xs tracking-widest uppercase mb-4" lang-data="en">05. Strategy</h4>
+<h4 class="font-bold text-xs tracking-widest uppercase mb-4" lang-data="es">05. Propuestas</h4>
+<p class="text-sm text-on-surface-variant" lang-data="en">Decision support and regularization roadmap.</p>
+<p class="text-sm text-on-surface-variant" lang-data="es">Soporte a la decisión y plan de regularización.</p>
+</div>
+</div>
+</section>
+<!-- Sectors -->
+<section class="py-32 px-6 md:px-12 bg-surface-container-low" id="sectors">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-24 items-center max-w-7xl mx-auto">
+<div>
+<h2 class="text-4xl font-headline mb-8 text-on-surface" lang-data="en">Sectors requiring <span class="serif-italic text-gold">absolute precision.</span></h2>
+<h2 class="text-4xl font-headline mb-8 text-on-surface" lang-data="es">Sectores que requieren <span class="serif-italic text-gold">precisión absoluta.</span></h2>
+<p class="text-on-surface-variant mb-12 max-w-md" lang-data="en">We intervene where operational complexity prevents clear visibility for the leadership.</p>
+<p class="text-on-surface-variant mb-12 max-w-md" lang-data="es">Intervenimos donde la complejidad operativa impide la visibilidad clara de la dirección.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-8 gap-x-12">
+<div class="flex items-center gap-4 border-b border-outline-variant/30 pb-4 group">
+<span class="material-symbols-outlined text-gold group-hover:scale-110 transition-transform">hub</span>
+<span class="text-sm font-medium tracking-tight" lang-data="en">Decentralized Operations</span>
+<span class="text-sm font-medium tracking-tight" lang-data="es">Operaciones descentralizadas</span>
+</div>
+<div class="flex items-center gap-4 border-b border-outline-variant/30 pb-4 group">
+<span class="material-symbols-outlined text-gold group-hover:scale-110 transition-transform">local_shipping</span>
+<span class="text-sm font-medium tracking-tight" lang-data="en">Complex Logistics</span>
+<span class="text-sm font-medium tracking-tight" lang-data="es">Logística compleja</span>
+</div>
+<div class="flex items-center gap-4 border-b border-outline-variant/30 pb-4 group">
+<span class="material-symbols-outlined text-gold group-hover:scale-110 transition-transform">security</span>
+<span class="text-sm font-medium tracking-tight" lang-data="en">Security &amp; Monitoring</span>
+<span class="text-sm font-medium tracking-tight" lang-data="es">Seguridad y Monitoreo</span>
+</div>
+<div class="flex items-center gap-4 border-b border-outline-variant/30 pb-4 group">
+<span class="material-symbols-outlined text-gold group-hover:scale-110 transition-transform">factory</span>
+<span class="text-sm font-medium tracking-tight" lang-data="en">Scaling SMEs</span>
+<span class="text-sm font-medium tracking-tight" lang-data="es">Pymes en Crecimiento</span>
+</div>
+<div class="flex items-center gap-4 border-b border-outline-variant/30 pb-4 group">
+<span class="material-symbols-outlined text-gold group-hover:scale-110 transition-transform">emergency</span>
+<span class="text-sm font-medium tracking-tight" lang-data="en">Sensitive Processes</span>
+<span class="text-sm font-medium tracking-tight" lang-data="es">Procesos Sensibles</span>
+</div>
+</div>
+</div>
+<div class="aspect-square bg-surface-container-highest relative overflow-hidden">
+<img alt="Elegant executive meeting room" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsgJZdVEFCgEAs7MtYQQeQnD3oI9Ptqy2zpeRXv1SDHSpMirrsbsjX-QOeVoyn3Fdd_Ts91QRwqg4i6RA0FHfpUK87pEX_6BVE4KwnxXPQ08kprITn9TfIJtOB3w_3PP0OsetGOKmmLTRp6FBvZA9OZNC_0aXNHfPBKQL5zWhnNx0XbPoqDhYC-nO1W8jxoi2WoDV7lAtS-rDWFpm3FWBHGAR5ZgjjU-8rnhhPQyRcmsUiItdwE7Ew57lsha63bPTLLjil849Wi2OO"/>
+<div class="absolute inset-0 bg-primary/5"></div>
+</div>
+</div>
+</section>
+<!-- Contact -->
+<section class="py-32 px-6 md:px-12 bg-surface" id="contact">
+<div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24">
+<div>
+<h2 class="text-5xl font-headline mb-8 text-on-surface" lang-data="en">Initiate a <span class="serif-italic text-gold">confidential conversation.</span></h2>
+<h2 class="text-5xl font-headline mb-8 text-on-surface" lang-data="es">Inicie una <span class="serif-italic text-gold">conversación confidencial.</span></h2>
+<p class="text-on-surface-variant text-lg mb-12" lang-data="en">Let's discuss how we can restore structure and traceability to your operation.</p>
+<p class="text-on-surface-variant text-lg mb-12" lang-data="es">Analicemos cómo podemos devolver la estructura y la trazabilidad a su operación.</p>
+<div class="space-y-6">
+<div class="flex flex-col">
+<span class="text-xs tracking-widest uppercase font-bold text-gold mb-2">Email</span>
+<a class="text-xl font-headline hover:text-gold transition-colors" href="mailto:chiaramonteluciano@hotmail.com">chiaramonteluciano@hotmail.com</a>
+</div>
+<div class="flex flex-col">
+<span class="text-xs tracking-widest uppercase font-bold text-gold mb-2">WhatsApp Direct</span>
+<a class="text-xl font-headline hover:text-gold transition-colors" href="https://wa.me/5491158625516">+54 9 11 5862 5516</a>
+</div>
+</div>
+</div>
+<form action="https://formspree.io/f/xreyvyzo" class="space-y-8" id="contact-form" method="POST">
+<input name="_subject" type="hidden" value="New confidential consultation request | Chiaramonte Corporate Advisory"/>
+<input name="_language" type="hidden" value="en"/>
+<input name="_gotcha" type="text" class="hidden" tabindex="-1" autocomplete="off"/>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="border-b border-outline-variant py-2">
+<label class="block text-[10px] tracking-widest uppercase font-bold text-on-surface-variant mb-1" for="name" lang-data="en">Name</label>
+<label class="block text-[10px] tracking-widest uppercase font-bold text-on-surface-variant mb-1" for="name" lang-data="es">Nombre</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-on-surface placeholder:text-outline-variant/50" id="name" name="name" placeholder="John Smith / Juan Pérez" required type="text"/>
+</div>
+<div class="border-b border-outline-variant py-2">
+<label class="block text-[10px] tracking-widest uppercase font-bold text-on-surface-variant mb-1" for="company" lang-data="en">Company</label>
+<label class="block text-[10px] tracking-widest uppercase font-bold text-on-surface-variant mb-1" for="company" lang-data="es">Empresa</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-on-surface placeholder:text-outline-variant/50" id="company" name="company" placeholder="..." type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="border-b border-outline-variant py-2">
+<label class="block text-[10px] tracking-widest uppercase font-bold text-on-surface-variant mb-1" for="email" lang-data="en">Corporate Email</label>
+<label class="block text-[10px] tracking-widest uppercase font-bold text-on-surface-variant mb-1" for="email" lang-data="es">Email Corporativo</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-on-surface placeholder:text-outline-variant/50" id="email" name="email" placeholder="email@company.com" required type="email"/>
+</div>
+<div class="border-b border-outline-variant py-2">
+<label class="block text-[10px] tracking-widest uppercase font-bold text-on-surface-variant mb-1" for="phone" lang-data="en">Phone</label>
+<label class="block text-[10px] tracking-widest uppercase font-bold text-on-surface-variant mb-1" for="phone" lang-data="es">Teléfono</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-on-surface placeholder:text-outline-variant/50" id="phone" name="phone" placeholder="+..." type="tel"/>
+</div>
+</div>
+<div class="border-b border-outline-variant py-2">
+<label class="block text-[10px] tracking-widest uppercase font-bold text-on-surface-variant mb-1" for="subject" lang-data="en">Consultation Subject</label>
+<label class="block text-[10px] tracking-widest uppercase font-bold text-on-surface-variant mb-1" for="subject" lang-data="es">Motivo de Consulta</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-on-surface placeholder:text-outline-variant/50" id="subject" name="subject" placeholder="..." required type="text"/>
+</div>
+<div class="border-b border-outline-variant py-2">
+<label class="block text-[10px] tracking-widest uppercase font-bold text-on-surface-variant mb-1" for="message" lang-data="en">Message</label>
+<label class="block text-[10px] tracking-widest uppercase font-bold text-on-surface-variant mb-1" for="message" lang-data="es">Mensaje</label>
+<textarea class="w-full bg-transparent border-none p-0 focus:ring-0 text-on-surface placeholder:text-outline-variant/50 resize-none" id="message" name="message" placeholder="..." required rows="3"></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary py-5 text-xs tracking-widest uppercase font-bold hover:bg-gold transition-colors disabled:opacity-70 disabled:cursor-not-allowed" id="contact-submit" type="submit">
+<span lang-data="en">Request confidential consultation</span>
+<span lang-data="es">Solicitar consulta confidencial</span>
+</button>
+<p class="hidden text-sm text-center" id="form-status" role="status"></p>
+<p class="text-[10px] text-center text-on-surface-variant/60 uppercase tracking-widest italic" lang-data="en">Confidentiality Guaranteed under Non-Disclosure Agreement</p>
+<p class="text-[10px] text-center text-on-surface-variant/60 uppercase tracking-widest italic" lang-data="es">Confidencialidad Garantizada bajo Acuerdo de No Divulgación</p>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer (Deep Black with Gold Accents) -->
+<footer class="w-full px-6 md:px-12 py-20 flex flex-col md:flex-row justify-between items-start gap-12 bg-[#0a0a0a] text-white">
+<div class="max-w-sm">
+<div class="text-2xl font-headline text-gold mb-6">Chiaramonte</div>
+<p class="text-sm leading-relaxed text-outline-variant serif-italic" lang-data="en">
+                Specialized advisory in traceability and operational structure for organizations with high-fidelity mandates.
+            </p>
+<p class="text-sm leading-relaxed text-outline-variant serif-italic" lang-data="es">
+                Advisory especializado en la mejora de la trazabilidad y la estructura operativa para organizaciones con mandatos de alta fidelidad.
+            </p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-12">
+<div class="flex flex-col gap-4">
+<span class="text-[10px] tracking-widest uppercase font-bold text-gold" lang-data="en">Navigation</span>
+<span class="text-[10px] tracking-widest uppercase font-bold text-gold" lang-data="es">Navegación</span>
+<a class="text-sm text-outline-variant hover:text-gold underline-offset-4 hover:underline transition-all" href="#about">
+<span lang-data="en">The Firm</span>
+<span lang-data="es">Sobre la Firma</span>
+</a>
+<a class="text-sm text-outline-variant hover:text-gold underline-offset-4 hover:underline transition-all" href="#services">
+<span lang-data="en">Services</span>
+<span lang-data="es">Servicios</span>
+</a>
+<a class="text-sm text-outline-variant hover:text-gold underline-offset-4 hover:underline transition-all" href="#contact">
+<span lang-data="en">Contact</span>
+<span lang-data="es">Contacto</span>
+</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="text-[10px] tracking-widest uppercase font-bold text-gold" lang-data="en">Contact</span>
+<span class="text-[10px] tracking-widest uppercase font-bold text-gold" lang-data="es">Contacto</span>
+<a class="text-sm text-outline-variant hover:text-gold transition-all" href="https://www.linkedin.com/in/lchiaramonte-/" target="_blank">LinkedIn</a>
+<a class="text-sm text-outline-variant hover:text-gold transition-all" href="https://wa.me/5491158625516">WhatsApp</a>
+<a class="text-sm text-outline-variant hover:text-gold transition-all" href="mailto:chiaramonteluciano@hotmail.com">Email</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="text-[10px] tracking-widest uppercase font-bold text-gold" lang-data="en">Location</span>
+<span class="text-[10px] tracking-widest uppercase font-bold text-gold" lang-data="es">Ubicación</span>
+<span class="text-sm text-outline-variant" lang-data="en">Buenos Aires, Argentina</span>
+<span class="text-sm text-outline-variant" lang-data="es">Buenos Aires, Argentina</span>
+<span class="text-sm text-outline-variant" lang-data="en">Global Operations</span>
+<span class="text-sm text-outline-variant" lang-data="es">Operaciones Globales</span>
+</div>
+<div class="flex flex-col gap-4">
+<span class="text-[10px] tracking-widest uppercase font-bold text-gold">Legal</span>
+<a class="text-sm text-outline-variant hover:text-gold transition-all" href="#">Privacy Policy</a>
+</div>
+</div>
+<div class="w-full md:w-auto mt-12 md:mt-0 flex flex-col items-end">
+<p class="text-xs text-outline-variant mb-2">© 2024 Chiaramonte Corporate Advisory. All Rights Reserved.</p>
+<p class="text-[10px] tracking-widest uppercase text-gold font-bold" lang-data="en">Confidentiality Guaranteed.</p>
+<p class="text-[10px] tracking-widest uppercase text-gold font-bold" lang-data="es">Confidencialidad Garantizada.</p>
+</div>
+</footer>
+<script>
+        function setLanguage(lang) {
+            // Update body class
+            document.body.classList.remove('lang-en', 'lang-es');
+            document.body.classList.add('lang-' + lang);
+            
+            // Update switcher buttons
+            const btnEn = document.getElementById('btn-en');
+            const btnEs = document.getElementById('btn-es');
+            const languageField = document.querySelector('input[name="_language"]');
+            
+            if (lang === 'en') {
+                btnEn.classList.add('lang-switch-active');
+                btnEn.classList.remove('text-outline-variant');
+                btnEs.classList.remove('lang-switch-active');
+                btnEs.classList.add('text-outline-variant');
+                document.documentElement.lang = 'en';
+            } else {
+                btnEs.classList.add('lang-switch-active');
+                btnEs.classList.remove('text-outline-variant');
+                btnEn.classList.remove('lang-switch-active');
+                btnEn.classList.add('text-outline-variant');
+                document.documentElement.lang = 'es';
+            }
+
+            if (languageField) {
+                languageField.value = lang;
+            }
+        }
+
+        const contactForm = document.getElementById('contact-form');
+        const submitButton = document.getElementById('contact-submit');
+        const formStatus = document.getElementById('form-status');
+
+        if (contactForm && submitButton && formStatus) {
+            contactForm.addEventListener('submit', async function (event) {
+                event.preventDefault();
+
+                submitButton.disabled = true;
+                formStatus.classList.remove('hidden', 'text-red-700', 'text-green-700');
+                formStatus.classList.add('text-on-surface-variant');
+                formStatus.textContent = document.body.classList.contains('lang-es')
+                    ? 'Enviando consulta...'
+                    : 'Sending inquiry...';
+
+                try {
+                    const response = await fetch(contactForm.action, {
+                        method: 'POST',
+                        body: new FormData(contactForm),
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        contactForm.reset();
+                        const languageField = document.querySelector('input[name="_language"]');
+                        if (languageField) {
+                            languageField.value = document.body.classList.contains('lang-es') ? 'es' : 'en';
+                        }
+                        formStatus.classList.remove('text-on-surface-variant', 'text-red-700');
+                        formStatus.classList.add('text-green-700');
+                        formStatus.textContent = document.body.classList.contains('lang-es')
+                            ? 'Consulta enviada correctamente. Te responderé por correo a la brevedad.'
+                            : 'Inquiry sent successfully. I will reply by email shortly.';
+                    } else {
+                        throw new Error('Submission failed');
+                    }
+                } catch (error) {
+                    formStatus.classList.remove('text-on-surface-variant', 'text-green-700');
+                    formStatus.classList.add('text-red-700');
+                    formStatus.textContent = document.body.classList.contains('lang-es')
+                        ? 'No se pudo enviar la consulta. Intentá nuevamente o escribime por email/WhatsApp.'
+                        : 'The inquiry could not be sent. Please try again or contact me by email/WhatsApp.';
+                } finally {
+                    submitButton.disabled = false;
+                }
+            });
+        }
+    </script>
+</body></html>
