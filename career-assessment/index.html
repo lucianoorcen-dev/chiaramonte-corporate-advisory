@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CCA Career Assessment — Diagnóstico Laboral Express. Una mirada profesional sobre cómo estás presentando tu experiencia y gestionando tu búsqueda laboral.">
+  <title>CCA Career Assessment | Diagnóstico Laboral Express</title>
+  <style>
+    :root{
+      --black:#111111;
+      --black-soft:#1a1a1a;
+      --ivory:#f3efe6;
+      --ivory-light:#faf8f3;
+      --gold:#b08d3c;
+      --gold-soft:#c6a85a;
+      --text:#24221e;
+      --muted:#686158;
+      --line:#d8d1c4;
+      --white:#fffdf8;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--ivory);
+      color:var(--text);
+      font-family:Arial, Helvetica, sans-serif;
+      line-height:1.65;
+    }
+    a{color:inherit}
+    .container{width:min(1120px, calc(100% - 40px));margin:0 auto}
+    .topline{height:3px;background:var(--gold)}
+    header{
+      background:var(--black);
+      color:var(--ivory);
+      border-bottom:1px solid rgba(255,255,255,.1);
+    }
+    .nav{
+      min-height:82px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:30px;
+    }
+    .brand{
+      text-decoration:none;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      letter-spacing:.08em;
+    }
+    .brand-mark{
+      width:42px;height:42px;border:1px solid var(--gold);
+      display:grid;place-items:center;
+      font-family:Georgia,serif;
+      font-size:18px;color:var(--gold);
+    }
+    .brand-text strong{display:block;font-size:13px;letter-spacing:.12em}
+    .brand-text span{display:block;font-size:10px;color:#bcb5aa;letter-spacing:.12em;margin-top:3px}
+    .nav-back{
+      font-size:12px;
+      text-decoration:none;
+      color:#d9d2c7;
+      border-bottom:1px solid transparent;
+    }
+    .nav-back:hover{border-color:var(--gold);color:#fff}
+
+    .hero{
+      background:var(--black);
+      color:var(--ivory);
+      padding:92px 0 105px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:420px;height:420px;
+      border:1px solid rgba(176,141,60,.18);
+      border-radius:50%;
+      right:-170px;top:-170px;
+    }
+    .eyebrow{
+      color:var(--gold-soft);
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      font-weight:bold;
+      margin-bottom:20px;
+    }
+    h1,h2,h3{font-family:Georgia, "Times New Roman", serif;font-weight:400}
+    h1{
+      font-size:clamp(46px,7vw,82px);
+      line-height:1.02;
+      max-width:850px;
+      margin:0 0 26px;
+      letter-spacing:-.025em;
+    }
+    .hero-sub{
+      max-width:690px;
+      font-size:20px;
+      color:#d9d2c7;
+      margin:0 0 38px;
+    }
+    .hero-note{
+      max-width:660px;
+      font-size:14px;
+      color:#a9a197;
+      margin-top:20px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:0 28px;
+      text-decoration:none;
+      text-transform:uppercase;
+      letter-spacing:.13em;
+      font-size:11px;
+      font-weight:bold;
+      transition:.2s ease;
+      border:1px solid var(--gold);
+    }
+    .btn-primary{background:var(--gold);color:#111}
+    .btn-primary:hover{background:#c29f4b}
+    .btn-dark{background:var(--black);color:var(--ivory)}
+    .btn-dark:hover{background:#292929}
+    .section{padding:92px 0}
+    .section-dark{background:var(--black);color:var(--ivory)}
+    .section-white{background:var(--white)}
+    .kicker{
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:11px;
+      font-weight:bold;
+      margin-bottom:14px;
+    }
+    h2{font-size:clamp(34px,4.5vw,54px);line-height:1.1;margin:0 0 22px}
+    .lead{font-size:18px;color:var(--muted);max-width:760px}
+    .dark-lead{color:#bdb6ab}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:70px}
+    .problem-grid,.analysis-grid,.receive-grid{
+      display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+      background:var(--line);margin-top:45px;
+    }
+    .card{
+      background:var(--ivory);
+      padding:32px;
+    }
+    .section-white .card{background:var(--white)}
+    .card-num{color:var(--gold);font-size:12px;letter-spacing:.15em;font-weight:bold}
+    .card h3{font-size:24px;margin:10px 0 10px}
+    .card p{margin:0;color:var(--muted);font-size:15px}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:45px}
+    .step{padding:28px 25px;border-top:1px solid #403b34;border-right:1px solid #403b34}
+    .step:last-child{border-right:0}
+    .step-num{font-family:Georgia,serif;font-size:30px;color:var(--gold);margin-bottom:12px}
+    .step strong{display:block;font-size:14px;letter-spacing:.04em;margin-bottom:8px}
+    .step span{display:block;color:#a9a197;font-size:14px}
+    .report-list{display:grid;grid-template-columns:1fr 1fr;gap:0 60px;margin-top:35px}
+    .report-list div{
+      padding:15px 0;border-bottom:1px solid var(--line);
+      font-size:15px;
+    }
+    .report-list div:before{content:"—";color:var(--gold);margin-right:10px}
+    .not-included{
+      margin-top:45px;
+      padding:34px;
+      border:1px solid var(--line);
+      background:#eee9df;
+    }
+    .not-included p{color:var(--muted);font-size:14px}
+    .promise{
+      margin-top:25px;
+      padding-left:22px;
+      border-left:2px solid var(--gold);
+      font-family:Georgia,serif;
+      font-size:22px;
+      line-height:1.45;
+    }
+    .price-wrap{
+      background:var(--black);
+      color:var(--ivory);
+      padding:70px 60px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:50px;
+      align-items:center;
+    }
+    .price{
+      font-family:Georgia,serif;
+      font-size:58px;
+      color:var(--gold-soft);
+      line-height:1;
+      margin:10px 0;
+    }
+    .price-note{color:#a9a197;font-size:13px}
+    .price-process{margin-top:22px;color:#c8c0b5;font-size:14px}
+    .price-process span{display:block;margin:7px 0}
+    .continuity{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+      background:var(--line);margin-top:45px;
+    }
+    .continuity .card{min-height:190px}
+    footer{
+      background:#0c0c0c;color:#aaa198;padding:55px 0 35px;
+      border-top:1px solid #2a2825;
+    }
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:50px}
+    footer strong{color:var(--ivory);font-family:Georgia,serif;font-size:18px;font-weight:400}
+    footer p,footer a{font-size:13px;color:#aaa198}
+    footer a{text-decoration:none}
+    footer a:hover{color:var(--gold-soft)}
+    .copyright{border-top:1px solid #292724;margin-top:35px;padding-top:20px;font-size:11px;letter-spacing:.05em}
+
+    @media(max-width:800px){
+      .container{width:min(100% - 28px, 1120px)}
+      .nav{min-height:72px}
+      .hero{padding:65px 0 75px}
+      .section{padding:65px 0}
+      .grid-2,.problem-grid,.analysis-grid,.receive-grid,.report-list{grid-template-columns:1fr;gap:1px}
+      .steps,.continuity{grid-template-columns:1fr}
+      .step{border-right:0;border-bottom:1px solid #403b34}
+      .price-wrap{grid-template-columns:1fr;padding:45px 28px}
+      .footer-grid{grid-template-columns:1fr}
+      .brand-text span{display:none}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topline"></div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="https://www.corporateadvisory.com.ar/">
+        <div class="brand-mark">CCA</div>
+        <div class="brand-text">
+          <strong>CHIARAMONTE CORPORATE ADVISORY</strong>
+          <span>CONTROL EMPRESARIAL · GOBERNANZA OPERATIVA · ADVISORY EJECUTIVO</span>
+        </div>
+      </a>
+      <a class="nav-back" href="https://www.corporateadvisory.com.ar/">Volver a CCA</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">CCA Career Assessment</div>
+        <h1>Diagnóstico Laboral Express</h1>
+        <p class="hero-sub">Una mirada profesional sobre cómo estás presentando tu experiencia y gestionando tu búsqueda laboral.</p>
+        <a class="btn btn-primary" href="#contratar">Quiero mi diagnóstico</a>
+        <p class="hero-note">Un análisis estructurado de tu objetivo profesional, posicionamiento, CV, LinkedIn y estrategia actual de búsqueda.</p>
+      </div>
+    </section>
+
+    <section class="section section-white">
+      <div class="container grid-2">
+        <div>
+          <div class="kicker">El problema</div>
+          <h2>Tu experiencia puede ser buena. La pregunta es cómo está siendo presentada.</h2>
+        </div>
+        <div>
+          <p class="lead">Buscar trabajo no siempre falla por falta de experiencia. A veces el problema está en cómo esa experiencia está posicionada, comunicada o dirigida.</p>
+          <p class="lead">CCA Career Assessment está pensado para obtener una mirada externa, estructurada y profesional sobre tu situación actual.</p>
+        </div>
+      </div>
+
+      <div class="container problem-grid">
+        <article class="card"><div class="card-num">01</div><h3>Pocas respuestas</h3><p>Enviás CVs y postulaciones, pero recibís pocas respuestas o no entendés qué puede estar fallando.</p></article>
+        <article class="card"><div class="card-num">02</div><h3>Perfil difícil de posicionar</h3><p>Tenés experiencia, pero no resulta sencillo traducirla en un posicionamiento profesional claro.</p></article>
+        <article class="card"><div class="card-num">03</div><h3>CV y LinkedIn desconectados</h3><p>Tu CV y tu perfil pueden estar contando historias diferentes o transmitiendo una propuesta poco consistente.</p></article>
+        <article class="card"><div class="card-num">04</div><h3>Búsqueda sin estructura</h3><p>Te postulás a oportunidades distintas sin una metodología clara para organizar y revisar tus resultados.</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="kicker">Qué analizamos</div>
+        <h2>Una revisión estructurada de tu perfil profesional.</h2>
+        <p class="lead">El diagnóstico no se limita a mirar si tu CV “se ve bien”. Analizamos la coherencia entre lo que buscás, lo que presentás y cómo estás gestionando la búsqueda.</p>
+
+        <div class="analysis-grid">
+          <article class="card"><div class="card-num">01</div><h3>Objetivo profesional</h3><p>Posición buscada, nivel, industrias, modalidad, ubicación y orientación general de la búsqueda.</p></article>
+          <article class="card"><div class="card-num">02</div><h3>Posicionamiento</h3><p>Cómo está presentado tu perfil y qué imagen profesional transmite a primera lectura.</p></article>
+          <article class="card"><div class="card-num">03</div><h3>CV</h3><p>Estructura, claridad, orientación al puesto, experiencia, palabras clave y consistencia.</p></article>
+          <article class="card"><div class="card-num">04</div><h3>LinkedIn</h3><p>Actualización, coherencia con el CV y utilización como herramienta profesional de búsqueda.</p></article>
+          <article class="card"><div class="card-num">05</div><h3>Estrategia de búsqueda</h3><p>Canales utilizados, volumen de postulaciones, entrevistas y patrones observables en la búsqueda.</p></article>
+          <article class="card"><div class="card-num">06</div><h3>Alineación</h3><p>Cuando existe una búsqueda concreta, contrastamos tu perfil con la oportunidad que te interesa.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark">
+      <div class="container">
+        <div class="kicker">Qué recibís</div>
+        <h2>Un diagnóstico personalizado en PDF.</h2>
+        <p class="lead dark-lead">Una lectura profesional pensada para que puedas entender dónde estás parado y qué conviene revisar primero.</p>
+
+        <div class="report-list">
+          <div>Lectura general de tu situación.</div>
+          <div>Fortalezas detectadas.</div>
+          <div>Aspectos que requieren revisión.</div>
+          <div>Inconsistencias o puntos débiles.</div>
+          <div>Oportunidades de mejora.</div>
+          <div>Prioridades de acción.</div>
+          <div>Recomendaciones concretas.</div>
+          <div>Plan de acción inicial de 7 días.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white">
+      <div class="container">
+        <div class="kicker">Alcance</div>
+        <h2>Primero entendemos. Después decidís qué hacer.</h2>
+
+        <div class="not-included">
+          <h3>Qué no incluye</h3>
+          <p>El CCA Career Assessment no incluye búsqueda laboral por cuenta del cliente, envío de postulaciones, contacto con recruiters, reescritura integral del CV, reescritura completa de LinkedIn ni garantía de entrevistas o contratación.</p>
+          <div class="promise">No prometemos conseguirte un trabajo. Te ayudamos a entender cómo estás presentando tu perfil y qué podés mejorar para gestionar tu búsqueda con mayor claridad y criterio.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contratar">
+      <div class="container">
+        <div class="price-wrap">
+          <div>
+            <div class="kicker">CCA Career Assessment</div>
+            <h2>Diagnóstico Laboral Express</h2>
+            <div class="price">ARS 15.000</div>
+            <div class="price-note">Entrega: hasta 48 horas hábiles.</div>
+            <div class="price-process">
+              <span>01 — Realizás el pago.</span>
+              <span>02 — Completás el formulario.</span>
+              <span>03 — Analizamos tu perfil.</span>
+              <span>04 — Recibís tu diagnóstico personalizado.</span>
+            </div>
+          </div>
+          <div>
+            <!-- REEMPLAZAR EL HREF POR EL LINK REAL DE PAGO UALÁ -->
+            <a class="btn btn-primary" href="https://pagar.ualabis.com.ar/order/b476d7915ab8c350601655b5c1157ce26c7fc66311ec711b" target="_blank" rel="noopener">Quiero mi diagnóstico</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white">
+      <div class="container">
+        <div class="kicker">Continuidad opcional</div>
+        <h2>Si querés trabajar sobre lo detectado.</h2>
+        <p class="lead">El diagnóstico es un producto independiente. Si posteriormente identificás que necesitás profundizar algún punto, podés solicitar servicios complementarios de CCA.</p>
+
+        <div class="continuity">
+          <article class="card"><div class="card-num">01</div><h3>CV Ejecutivo</h3><p>Optimización y adaptación profesional del CV según el posicionamiento buscado.</p></article>
+          <article class="card"><div class="card-num">02</div><h3>LinkedIn Profesional</h3><p>Revisión y optimización de la presencia profesional en LinkedIn.</p></article>
+          <article class="card"><div class="card-num">03</div><h3>Job Search Control Desk</h3><p>Un sistema para organizar, registrar y controlar la búsqueda laboral.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark">
+      <div class="container">
+        <div class="kicker">Proceso</div>
+        <h2>Una intervención breve. Un resultado concreto.</h2>
+        <div class="steps">
+          <div class="step"><div class="step-num">01</div><strong>Pago</strong><span>Confirmás la contratación del Career Assessment.</span></div>
+          <div class="step"><div class="step-num">02</div><strong>Información</strong><span>Completás el formulario y adjuntás tu CV.</span></div>
+          <div class="step"><div class="step-num">03</div><strong>Análisis</strong><span>CCA revisa la información y estructura los hallazgos.</span></div>
+          <div class="step"><div class="step-num">04</div><strong>Entrega</strong><span>Recibís tu diagnóstico personalizado en PDF.</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <strong>Chiaramonte Corporate Advisory</strong>
+        <p>Control Empresarial · Gobernanza Operativa · Advisory Ejecutivo</p>
+        <p>Una estructura advisory para quienes necesitan claridad, control y criterio.</p>
+      </div>
+      <div>
+        <strong>Contacto</strong>
+        <p><a href="mailto:contacto@corporateadvisory.com.ar">contacto@corporateadvisory.com.ar</a></p>
+        <p><a href="https://wa.me/5491158625516" target="_blank" rel="noopener">WhatsApp</a></p>
+      </div>
+      <div>
+        <strong>Navegación</strong>
+        <p><a href="https://www.corporateadvisory.com.ar/">CCA</a></p>
+        <p><a href="#contratar">Career Assessment</a></p>
+      </div>
+    </div>
+    <div class="container copyright">© 2026 Chiaramonte Corporate Advisory · Confidentiality Guaranteed.</div>
+  </footer>
+</body>
+</html>
