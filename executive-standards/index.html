@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CCA Executive Assimilation Kit — estándar operativo para profesionales, mandos medios y nuevos ingresos que necesitan integrarse, decidir y ejecutar con criterio desde el inicio.">
+  <meta name="theme-color" content="#0b0d11">
+  <title>Executive Assimilation | CCA Human Capital Governance</title>
+  <link rel="icon" type="image/png" sizes="256x256" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
+  <style>
+    :root{
+      --black:#0b0d11;
+      --black-2:#11141a;
+      --navy:#0c1830;
+      --navy-2:#10213f;
+      --gold:#d4af37;
+      --gold-2:#b9902d;
+      --ivory:#f4f0e7;
+      --muted:#b7b3aa;
+      --line:rgba(212,175,55,.24);
+      --white:#f8f7f3;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--black);color:var(--ivory);font-family:Arial,Helvetica,sans-serif;line-height:1.65}
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(11,13,17,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(212,175,55,.14)}
+    .nav{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#e9e4d9}
+    .brand img{width:170px;height:auto;display:block}
+    .navlinks{display:flex;gap:22px;align-items:center;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#c9c5bc}
+    .navlinks a:hover{color:var(--gold)}
+    .nav-cta{border:1px solid var(--gold);padding:10px 15px;color:var(--gold)}
+    .hero{position:relative;overflow:hidden;background:radial-gradient(circle at 75% 25%,rgba(16,33,63,.95),transparent 42%),linear-gradient(135deg,#090b0f 0%,#0d1119 55%,#0c1830 100%);border-bottom:1px solid var(--line)}
+    .hero:after{content:"";position:absolute;inset:auto -10% -180px auto;width:520px;height:520px;border:1px solid rgba(212,175,55,.12);border-radius:50%;box-shadow:0 0 0 70px rgba(212,175,55,.025),0 0 0 140px rgba(212,175,55,.018)}
+    .hero-grid{min-height:690px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:70px;position:relative;z-index:1;padding:90px 0 100px}
+    .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+    h1,h2,h3{font-family:Georgia,'Times New Roman',serif;font-weight:400;line-height:1.12;margin:0}
+    h1{font-size:clamp(48px,6vw,78px);letter-spacing:-.025em;max-width:800px}
+    .hero h1 span{color:var(--gold)}
+    .lead{font-size:19px;color:#d2cfc8;max-width:690px;margin:28px 0 0}
+    .sublead{font-size:14px;color:var(--muted);max-width:650px;margin:18px 0 0}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:13px 20px;border:1px solid var(--gold);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;transition:.2s ease}
+    .btn.primary{background:var(--gold);color:#101114}
+    .btn.primary:hover{background:#e0c15a}
+    .btn.secondary{color:var(--gold);background:transparent}
+    .btn.secondary:hover{background:rgba(212,175,55,.08)}
+    .hero-card{border:1px solid var(--line);background:linear-gradient(145deg,rgba(12,24,48,.82),rgba(17,20,26,.72));padding:34px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+    .hero-card .mark{font-family:Georgia,serif;font-size:82px;color:var(--gold);line-height:.8;margin-bottom:24px;opacity:.9}
+    .hero-card h2{font-size:28px}
+    .hero-card p{color:#c4c1b9;font-size:14px;margin:18px 0 0}
+    .mini-list{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid rgba(212,175,55,.18)}
+    .mini-list li{padding:13px 0;border-bottom:1px solid rgba(212,175,55,.12);font-size:13px;color:#d9d5cc}
+    .mini-list li:before{content:'—';color:var(--gold);margin-right:10px}
+    section{padding:92px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+    .section-head{max-width:800px;margin-bottom:46px}
+    .section-head h2{font-size:clamp(34px,4vw,52px)}
+    .section-head p{color:var(--muted);font-size:16px;margin:18px 0 0}
+    .dark-navy{background:var(--navy)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .card{background:rgba(255,255,255,.025);border:1px solid rgba(212,175,55,.16);padding:30px;min-height:210px}
+    .card .num{font-size:11px;letter-spacing:.18em;color:var(--gold);margin-bottom:20px}
+    .card h3{font-size:24px}
+    .card p{font-size:14px;color:#bdb9b0;margin:14px 0 0}
+    .module{min-height:235px;background:#10131a;border:1px solid rgba(212,175,55,.15);padding:28px;position:relative}
+    .module strong{display:block;color:var(--gold);font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:13px}
+    .module h3{font-size:24px}
+    .module p{color:#c2beb6;font-size:14px;margin:12px 0 0}
+    .module .tag{position:absolute;right:18px;top:18px;font-size:10px;letter-spacing:.1em;color:#77736b;text-transform:uppercase}
+    .audience{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(212,175,55,.16)}
+    .audience div{padding:28px;border-bottom:1px solid rgba(212,175,55,.12)}
+    .audience div:nth-child(odd){border-right:1px solid rgba(212,175,55,.12)}
+    .audience div:nth-last-child(-n+2){border-bottom:0}
+    .audience b{display:block;font-family:Georgia,serif;font-size:22px;font-weight:400;margin-bottom:8px}
+    .audience span{color:#aaa69e;font-size:13px}
+    .steps{counter-reset:step;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .step{position:relative;padding:28px;border-top:1px solid var(--gold);background:rgba(255,255,255,.025)}
+    .step:before{counter-increment:step;content:'0' counter(step);display:block;color:var(--gold);font-size:11px;letter-spacing:.15em;margin-bottom:24px}
+    .step h3{font-size:22px}
+    .step p{font-size:13px;color:#aaa69e;margin:12px 0 0}
+    .quote{padding:46px;border-left:2px solid var(--gold);background:linear-gradient(90deg,rgba(212,175,55,.07),transparent);max-width:920px}
+    .quote p{font-family:Georgia,serif;font-size:30px;line-height:1.25;margin:0;color:#ece7dc}
+    .quote small{display:block;margin-top:20px;color:var(--gold);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+    .cta{background:linear-gradient(135deg,#0c1830,#11141a 70%)}
+    .cta-box{display:grid;grid-template-columns:1fr auto;gap:50px;align-items:center;padding:55px 0}
+    .cta h2{font-size:clamp(34px,4vw,54px)}
+    .cta p{color:#bcb8af;max-width:700px;margin:18px 0 0}
+    footer{padding:36px 0 46px;background:#080a0d;color:#8e8b84;font-size:12px}
+    .footer-grid{display:flex;justify-content:space-between;gap:30px;align-items:flex-end}
+    .footer-brand img{width:190px;margin-bottom:16px}
+    .footer-links{display:flex;gap:18px;flex-wrap:wrap;justify-content:flex-end}
+    .footer-links a:hover{color:var(--gold)}
+    @media(max-width:900px){
+      .hero-grid,.cta-box{grid-template-columns:1fr;gap:38px}
+      .hero-grid{min-height:auto;padding:70px 0 80px}
+      .grid-3,.steps{grid-template-columns:1fr 1fr}
+      .navlinks a:not(.nav-cta){display:none}
+    }
+    @media(max-width:620px){
+      .wrap{width:min(var(--max),calc(100% - 28px))}
+      .brand img{width:145px}
+      .grid-3,.grid-2,.steps,.audience{grid-template-columns:1fr}
+      .audience div:nth-child(odd){border-right:0}
+      .audience div:nth-last-child(-n+2){border-bottom:1px solid rgba(212,175,55,.12)}
+      .audience div:last-child{border-bottom:0}
+      section{padding:70px 0}
+      .quote{padding:30px}
+      .quote p{font-size:24px}
+      .footer-grid{align-items:flex-start;flex-direction:column}
+      .footer-links{justify-content:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="https://corporateadvisory.com.ar/" aria-label="CCA — volver al sitio principal">
+        <img src="assets/cca-logo-transparent.png" alt="Chiaramonte Corporate Advisory">
+      </a>
+      <nav class="navlinks" aria-label="Navegación">
+        <a href="#kit">El Kit</a>
+        <a href="#modulos">Módulos</a>
+        <a href="../career-assessment/">Career Assessment</a>
+        <a class="nav-cta" href="https://wa.me/5491158625516?text=Hola%20CCA.%20Quiero%20informaci%C3%B3n%20sobre%20Executive%20Assimilation%20Kit.">Solicitar Kit</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">CCA · Human Capital Governance</div>
+          <h1>Executive <span>Assimilation</span></h1>
+          <p class="lead">Un estándar operativo para profesionales que necesitan integrarse, comprender su rol y ejecutar con criterio desde el comienzo.</p>
+          <p class="sublead">El Executive Assimilation Kit reúne herramientas prácticas de comunicación, control, evaluación de riesgos, gestión personal y toma de decisiones para reducir fricción durante la incorporación o consolidación de una función.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://wa.me/5491158625516?text=Hola%20CCA.%20Quiero%20adquirir%20el%20Executive%20Assimilation%20Kit.">Quiero el Executive Assimilation Kit</a>
+            <a class="btn secondary" href="#modulos">Ver contenido</a>
+          </div>
+        </div>
+        <aside class="hero-card" id="kit">
+          <div class="mark">CA</div>
+          <h2>Executive Assimilation Kit</h2>
+          <p>Manual operativo de 24 páginas desarrollado dentro de CCA: Human Capital Governance.</p>
+          <ul class="mini-list">
+            <li>7 módulos de aplicación inmediata</li>
+            <li>Orientado a profesionales y mandos medios</li>
+            <li>Enfoque en evidencia, criterio y ejecución</li>
+            <li>Producto independiente de CCA</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">El problema</div>
+          <h2>Entrar a una organización no termina con conseguir el puesto.</h2>
+          <p>Durante los primeros meses aparecen dependencias que no figuran en una descripción de puesto: circuitos informales, expectativas implícitas, criterios de decisión, indicadores, riesgos y formas de comunicación que pueden determinar el resultado de una incorporación.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card"><div class="num">01 · ROL</div><h3>Ambigüedad</h3><p>Responsabilidades poco delimitadas, dependencias no mapeadas y decisiones tomadas sin conocer todavía el sistema en el que se interviene.</p></article>
+          <article class="card"><div class="num">02 · EJECUCIÓN</div><h3>Fricción</h3><p>Desvíos de criterio, comunicación imprecisa y cambios prematuros que generan resistencia o riesgos innecesarios.</p></article>
+          <article class="card"><div class="num">03 · CONTROL</div><h3>Asimetrías</h3><p>Diferencias entre lo que se declara saber hacer y lo que efectivamente exige el entorno operativo.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark-navy">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Qué es</div>
+          <h2>Gobernanza aplicada al desempeño profesional.</h2>
+          <p>Executive Assimilation no es un curso genérico de liderazgo, ni una capacitación de recursos humanos. Es una herramienta de estandarización y control para ordenar la forma en que un profesional observa, comunica, decide y ejecuta dentro de una organización.</p>
+        </div>
+        <div class="grid-2">
+          <article class="card"><div class="num">ESTÁNDAR</div><h3>Observar antes de intervenir</h3><p>La primera etapa de una función nueva requiere comprender dependencias, indicadores, fricciones y riesgos antes de introducir cambios.</p></article>
+          <article class="card"><div class="num">CRITERIO</div><h3>Separar hechos de hipótesis</h3><p>La comunicación directiva debe distinguir evidencia, interpretación y decisión para reducir ambigüedad y facilitar el seguimiento.</p></article>
+          <article class="card"><div class="num">CONTROL</div><h3>Convertir actividad en trazabilidad</h3><p>Rutinas, acuerdos, riesgos y proyectos necesitan mecanismos simples que permitan saber qué ocurre y qué requiere decisión.</p></article>
+          <article class="card"><div class="num">INTEGRACIÓN</div><h3>Reducir fricción de incorporación</h3><p>El objetivo es facilitar una integración operativa consistente sin convertir el proceso en burocracia.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="modulos">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Contenido del Kit</div>
+          <h2>Siete instrumentos. Un mismo criterio operativo.</h2>
+          <p>El manual está estructurado para que cada herramienta pueda utilizarse de manera independiente y, al mismo tiempo, formar parte de un sistema de trabajo coherente.</p>
+        </div>
+        <div class="grid-3">
+          <article class="module"><span class="tag">01</span><strong>Reporte directivo</strong><h3>Plantilla de Reporte Directivo</h3><p>Cómo presentar información separando hechos, hipótesis y conclusiones, evitando adjetivos y mejorando la calidad de la comunicación.</p></article>
+          <article class="module"><span class="tag">02</span><strong>Primeros 30 días</strong><h3>Auditoría de Rol</h3><p>Mapa de dependencias, fricciones, indicadores y riesgos antes de introducir cambios apresurados.</p></article>
+          <article class="module"><span class="tag">03</span><strong>Proyectos internos</strong><h3>Framework de Proyectos</h3><p>Estructura para presentar iniciativas considerando impacto, costo, riesgos y reversibilidad.</p></article>
+          <article class="module"><span class="tag">04</span><strong>Shadow Twin L1</strong><h3>Autoevaluación Operativa</h3><p>Matriz de madurez ejecutiva para identificar fortalezas, brechas y variables que requieren seguimiento.</p></article>
+          <article class="module"><span class="tag">05</span><strong>Control personal</strong><h3>Kit de Control Operativo Personal</h3><p>Herramientas para organizar trabajo profundo, trabajo superficial, gestión de bandeja de entrada y dinámica asincrónica.</p></article>
+          <article class="module"><span class="tag">06</span><strong>Riesgos</strong><h3>Checklist de Riesgos Básicos</h3><p>Identificación de probabilidad e impacto y criterios para escalar situaciones que exceden el ámbito de decisión.</p></article>
+          <article class="module"><span class="tag">07</span><strong>Comunicación</strong><h3>Guía de Comunicación Ejecutiva</h3><p>Aplicación de BLUF, reducción de ambigüedad y formalización de acuerdos, responsables y próximos pasos.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark-navy">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Para quién</div>
+          <h2>Diseñado para personas que ya están dentro del sistema.</h2>
+          <p>Executive Assimilation complementa Career Assessment: mientras una rama aborda la presentación y gestión de una búsqueda laboral, esta trabaja sobre la integración y desempeño de profesionales activos.</p>
+        </div>
+        <div class="audience">
+          <div><b>Nuevos ingresos</b><span>Profesionales que comienzan una función y necesitan ordenar sus primeros 30 días.</span></div>
+          <div><b>Mandos medios</b><span>Supervisores, coordinadores y responsables que necesitan consolidar criterio operativo.</span></div>
+          <div><b>Profesionales activos</b><span>Personas que ya ocupan una posición y quieren revisar su forma de operar.</span></div>
+          <div><b>Candidatos en etapa final</b><span>Profesionales próximos a asumir una posición con responsabilidad operativa.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Principio de trabajo</div>
+          <h2>No se trata de hacer más. Se trata de reducir errores evitables.</h2>
+        </div>
+        <div class="quote">
+          <p>“La integración profesional también puede gestionarse como un problema de gobernanza: observar, estructurar, comunicar, ejecutar y controlar.”</p>
+          <small>CCA · Human Capital Governance</small>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Cómo se utiliza</div>
+          <h2>Un kit independiente, pensado para ser aplicado.</h2>
+          <p>No requiere contratar una consultoría para empezar a utilizarlo. El profesional recibe el material y puede incorporarlo a su propia dinámica de trabajo.</p>
+        </div>
+        <div class="steps">
+          <article class="step"><h3>Adquirir</h3><p>Solicitar el Executive Assimilation Kit a CCA.</p></article>
+          <article class="step"><h3>Revisar</h3><p>Recorrer el estándar y detectar qué módulos tienen mayor relevancia para la función.</p></article>
+          <article class="step"><h3>Aplicar</h3><p>Utilizar las plantillas, matrices y checklists dentro de la dinámica profesional.</p></article>
+          <article class="step"><h3>Profundizar</h3><p>Cuando el caso lo requiera, avanzar hacia una intervención específica de CCA.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contacto">
+      <div class="wrap cta-box">
+        <div>
+          <div class="eyebrow">CCA · Executive Assimilation</div>
+          <h2>Prepará tu forma de operar antes de que el entorno te obligue a hacerlo.</h2>
+          <p>Solicitá información sobre el Executive Assimilation Kit y conocé cómo incorporarlo a tu contexto profesional.</p>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="https://wa.me/5491158625516?text=Hola%20CCA.%20Quiero%20informaci%C3%B3n%20y%20condiciones%20del%20Executive%20Assimilation%20Kit.">Solicitar información</a>
+          <a class="btn secondary" href="https://corporateadvisory.com.ar/">Volver a CCA</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <img src="assets/cca-logo-transparent.png" alt="Chiaramonte Corporate Advisory">
+        <div>Control Empresarial · Gobernanza Operativa &amp; Advisory Ejecutivo</div>
+        <div style="margin-top:7px">Buenos Aires, Argentina · contacto@corporateadvisory.com.ar</div>
+      </div>
+      <div class="footer-links">
+        <a href="https://corporateadvisory.com.ar/">CCA</a>
+        <a href="../career-assessment/">Career Assessment</a>
+        <a href="mailto:contacto@corporateadvisory.com.ar">Email</a>
+        <a href="https://wa.me/5491158625516">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
