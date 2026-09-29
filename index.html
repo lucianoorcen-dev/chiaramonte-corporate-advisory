@@ -72,8 +72,9 @@ footer{background:var(--ivory);color:var(--carbon);border-top:1px solid #d3cabb;
 <section id="contacto" class="contact-section"><div class="container contact"><div><div class="eyebrow" data-es="Contacto institucional" data-en="Institutional contact"></div><h2 data-es="Hablemos cuando el problema requiera <em>criterio y estructura.</em>" data-en="Let's talk when the problem requires <em>judgment and structure.</em>"></h2><p class="contact-copy" data-es="Las conversaciones con CCA comienzan por comprender el problema, no por encajar al cliente en un servicio predeterminado." data-en="Conversations with CCA begin by understanding the problem, not by fitting a client into a predetermined service."></p><div class="contact-card"><span>Email</span><a href="mailto:contacto@corporateadvisory.com.ar">contacto@corporateadvisory.com.ar</a></div><div class="contact-card"><span>WhatsApp</span><a href="https://wa.me/5491158625516" target="_blank" rel="noopener">+54 9 11 5862-5516</a></div></div><form class="contact-form" id="contactForm" action="https://formsubmit.co/ajax/contacto@corporateadvisory.com.ar" method="POST">
 <input type="hidden" name="_subject" value="Nueva consulta desde CCA · Corporate Advisory">
 <input type="hidden" name="_template" value="table">
-<input type="hidden" name="_captcha" value="true">
+<input type="hidden" name="_captcha" value="false">
 <input type="hidden" name="_url" value="https://www.corporateadvisory.com.ar/">
+<input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
 <div class="field"><label for="name" data-es="Nombre completo" data-en="Full name"></label><input id="name" name="name" required autocomplete="name"></div>
 <div class="field"><label for="company" data-es="Empresa u organización" data-en="Company or organization"></label><input id="company" name="company" autocomplete="organization"></div>
 <div class="field"><label for="email" data-es="Correo electrónico" data-en="Email"></label><input id="email" name="email" type="email" required autocomplete="email"></div>
@@ -133,9 +134,19 @@ form.addEventListener('submit',async function(e){
   submit.disabled=true;
   const originalText=submit.textContent;
   submit.textContent=document.documentElement.lang==='en'?'Sending…':'Enviando…';
-  try{
-    const response=await fetch(form.action,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)});
-    if(response.ok){
+  const formData = new FormData(form);
+const data = Object.fromEntries(formData.entries());
+
+const response = await fetch(form.action, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  },
+  body: JSON.stringify(data)
+});
+
+if(response.ok){
       form.reset();
       updateValidity();
       success.style.display='block';
