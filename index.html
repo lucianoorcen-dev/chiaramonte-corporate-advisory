@@ -110,9 +110,14 @@ const requiredFields=[nameField,emailField,messageField,privacyField];
 function updateValidity(){
   nameField.setCustomValidity(nameField.value.trim()?'' : 'Este campo es obligatorio.');
   messageField.setCustomValidity(messageField.value.trim()?'' : 'Este campo es obligatorio.');
-  if(!emailField.value.trim()) emailField.setCustomValidity('Este campo es obligatorio.');
-  else if(!emailField.checkValidity()) emailField.setCustomValidity('Ingresá un correo electrónico válido.');
-  else emailField.setCustomValidity('');
+  if(!emailField.value.trim()) {
+  emailField.setCustomValidity('Este campo es obligatorio.');
+} else {
+  emailField.setCustomValidity('');
+  if(emailField.validity.typeMismatch) {
+    emailField.setCustomValidity('Ingresá un correo electrónico válido.');
+  }
+}
   privacyField.setCustomValidity(privacyField.checked?'':'Debés aceptar el Aviso de Privacidad para enviar la consulta.');
 }
 requiredFields.forEach(el=>el.addEventListener(el.type==='checkbox'?'change':'input',()=>{updateValidity();error.style.display='none';success.style.display='none';}));
