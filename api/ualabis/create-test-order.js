@@ -60,7 +60,7 @@ export default async function handler(req, res) {
           "Authorization": `Bearer ${accessToken}`
         },
         body: JSON.stringify({
-          amount: "1500000",
+          amount: "100",
           description: "CCA Career Assessment - TEST",
           callback_fail:
             "https://www.corporateadvisory.com.ar/career-assessment/",
