@@ -343,9 +343,82 @@
             </div>
           </div>
           <div>
-            <!-- REEMPLAZAR EL HREF POR EL LINK REAL DE PAGO UALÁ -->
-            <a class="btn btn-primary" href="https://pagar.ualabis.com.ar/order/b476d7915ab8c350601655b5c1157ce26c7fc66311ec711b" target="_blank" rel="noopener">Quiero mi diagnóstico</a>
-          </div>
+  <button
+    id="btnComprar"
+    class="btn btn-primary"
+    type="button"
+  >
+    Quiero mi diagnóstico
+  </button>
+
+  <p
+    id="estadoPago"
+    style="
+      display:none;
+      margin-top:15px;
+      color:#c6a85a;
+      font-size:13px;
+    "
+  ></p>
+</div>
+
+<script>
+  const btnComprar = document.getElementById("btnComprar");
+  const estadoPago = document.getElementById("estadoPago");
+
+  btnComprar.addEventListener("click", async () => {
+    btnComprar.disabled = true;
+    btnComprar.style.opacity = "0.6";
+    estadoPago.style.display = "block";
+    estadoPago.textContent = "Preparando el checkout...";
+
+    try {
+      const response = await fetch(
+        "/api/ualabis/create-order",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok || !data.ok) {
+        throw new Error(
+          data.error || "No se pudo crear la orden."
+        );
+      }
+
+      const checkoutLink =
+        data.order &&
+        data.order.links &&
+        data.order.links.checkout_link;
+
+      if (!checkoutLink) {
+        throw new Error(
+          "Ualá no devolvió el enlace de checkout."
+        );
+      }
+
+      estadoPago.textContent =
+        "Redirigiendo a Ualá...";
+
+      window.location.href = checkoutLink;
+
+    } catch (error) {
+      console.error("Error al crear orden:", error);
+
+      estadoPago.textContent =
+        "No pudimos iniciar el pago. Por favor, intentá nuevamente.";
+
+      btnComprar.disabled = false;
+      btnComprar.style.opacity = "1";
+    }
+  });
+</script>
+
         </div>
       </div>
     </section>
