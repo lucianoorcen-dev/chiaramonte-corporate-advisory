@@ -42,7 +42,7 @@ export default async function handler(req, res) {
       });
     }
 
-    // Buscar la orden en Neon
+    // Buscar la orden
     const orders = await sql`
       SELECT *
       FROM orders
@@ -62,7 +62,7 @@ export default async function handler(req, res) {
       });
     }
 
-    // Guardar el pago recibido de Ualá
+    // Guardar el pago recibido
     await sql`
       INSERT INTO payments (
         order_id,
@@ -78,7 +78,7 @@ export default async function handler(req, res) {
       )
     `;
 
-    // Actualizar el estado de la orden
+    // Actualizar la orden
     await sql`
       UPDATE orders
       SET
@@ -91,9 +91,44 @@ export default async function handler(req, res) {
       WHERE order_id = ${external_reference}
     `;
 
-    console.log(
-      `Pago recibido: ${external_reference} - ${status}`
-    );
+    // Si el pago fue aprobado, generar acceso
+    if (status === "APPROVED") {
+
+      const existingAccess = await sql`
+        SELECT *
+        FROM access_codes
+        WHERE order_id = ${external_reference}
+        LIMIT 1
+      `;
+
+      if (existingAccess.length === 0) {
+
+        const accessCode =
+          `CCA-${crypto.randomUUID().replace(/-/g, "").slice(0, 12).toUpperCase()}`;
+
+        await sql`
+          INSERT INTO access_codes (
+            order_id,
+            access_code,
+            email
+          )
+          VALUES (
+            ${external_reference},
+            ${accessCode},
+            ${orders[0].email || null}
+          )
+        `;
+
+        console.log(
+          `Acceso creado para ${external_reference}: ${accessCode}`
+        );
+
+      } else {
+        console.log(
+          `La orden ${external_reference} ya tiene un acceso.`
+        );
+      }
+    }
 
     return res.status(200).json({
       ok: true
@@ -108,4 +143,3 @@ export default async function handler(req, res) {
     });
   }
 }
-
