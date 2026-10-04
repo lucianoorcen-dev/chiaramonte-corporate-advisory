@@ -4,6 +4,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@neondatabase/serverless": "^1.0.0"
+    "@neondatabase/serverless": "^1.0.2"
   }
 }
