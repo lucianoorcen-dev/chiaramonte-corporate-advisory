@@ -1,3 +1,7 @@
+import { neon } from "@neondatabase/serverless";
+
+const sql = neon(process.env.DATABASE_URL);
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({
@@ -38,23 +42,58 @@ export default async function handler(req, res) {
       });
     }
 
-    if (status === "APPROVED") {
-      console.log(
-        `Pago APROBADO: ${external_reference}`
+    // Buscar la orden en Neon
+    const orders = await sql`
+      SELECT *
+      FROM orders
+      WHERE order_id = ${external_reference}
+      LIMIT 1
+    `;
+
+    if (orders.length === 0) {
+      console.error(
+        "No se encontró la orden:",
+        external_reference
       );
+
+      return res.status(404).json({
+        ok: false,
+        error: "Orden no encontrada."
+      });
     }
 
-    if (status === "PROCESSED") {
-      console.log(
-        `Pago PROCESADO: ${external_reference}`
-      );
-    }
+    // Guardar el pago recibido de Ualá
+    await sql`
+      INSERT INTO payments (
+        order_id,
+        payment_id,
+        status,
+        payment_data
+      )
+      VALUES (
+        ${external_reference},
+        ${uuid},
+        ${status},
+        ${JSON.stringify(notification)}
+      )
+    `;
 
-    if (status === "REJECTED") {
-      console.log(
-        `Pago RECHAZADO: ${external_reference}`
-      );
-    }
+    // Actualizar el estado de la orden
+    await sql`
+      UPDATE orders
+      SET
+        status = ${status},
+        paid_at = CASE
+          WHEN ${status} = 'APPROVED'
+          THEN NOW()
+          ELSE paid_at
+        END
+      WHERE order_id = ${external_reference}
+    `;
+
+    console.log(
+      `Pago recibido: ${external_reference} - ${status}`
+    );
 
     return res.status(200).json({
       ok: true
@@ -69,3 +108,4 @@ export default async function handler(req, res) {
     });
   }
 }
+
