@@ -1,4 +1,4 @@
-import { sql } from "@vercel/postgres";
+import { neon } from "@neondatabase/serverless";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -9,16 +9,25 @@ export default async function handler(req, res) {
   }
 
   try {
+    const sql = neon(process.env.DATABASE_URL);
+
     const payload = req.body;
 
     console.log("TALLY WEBHOOK:", payload);
 
-    const accessCode =
-      payload?.data?.fields?.find(
-        field => field.key === "access_code"
-      )?.value;
+    const fields = payload?.data?.fields || [];
+
+    const accessField = fields.find(
+      (field) =>
+        field.key === "access_code" ||
+        field.label === "access_code"
+    );
+
+    const accessCode = accessField?.value;
 
     if (!accessCode) {
+      console.error("No se recibió access_code.");
+
       return res.status(400).json({
         ok: false,
         error: "No se recibió access_code."
@@ -32,10 +41,15 @@ export default async function handler(req, res) {
         used_at = NOW()
       WHERE access_code = ${accessCode}
         AND used = false
-      RETURNING id, access_code, used, used_at;
+      RETURNING id, access_code, used, used_at
     `;
 
-    if (result.rows.length === 0) {
+    if (result.length === 0) {
+      console.error(
+        "Código inexistente o ya utilizado:",
+        accessCode
+      );
+
       return res.status(404).json({
         ok: false,
         error: "Código inexistente o ya utilizado."
@@ -44,13 +58,12 @@ export default async function handler(req, res) {
 
     console.log(
       "ACCESS CODE USED:",
-      result.rows[0]
+      result[0]
     );
 
     return res.status(200).json({
       ok: true,
-      message: "Acceso marcado como utilizado.",
-      access_code: accessCode
+      message: "Acceso marcado como utilizado."
     });
 
   } catch (error) {
@@ -61,7 +74,8 @@ export default async function handler(req, res) {
 
     return res.status(500).json({
       ok: false,
-      error: "Error procesando Tally."
+      error: "Error procesando Tally.",
+      details: error.message
     });
   }
 }
