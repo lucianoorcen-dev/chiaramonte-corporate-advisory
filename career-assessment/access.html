@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CCA Career Assessment | Acceso</title>
+
+  <style>
+    :root {
+      --black: #111111;
+      --ivory: #f3efe6;
+      --gold: #b08d3c;
+      --gold-soft: #c6a85a;
+      --muted: #686158;
+      --white: #fffdf8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--ivory);
+      color: var(--black);
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .box {
+      width: min(560px, 100%);
+      background: var(--white);
+      padding: 48px 40px;
+      border-top: 4px solid var(--gold);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    .logo {
+      max-width: 190px;
+      width: 100%;
+      height: auto;
+      margin-bottom: 35px;
+    }
+
+    .kicker {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      font-size: 42px;
+      line-height: 1.1;
+      margin: 0 0 18px;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.65;
+      margin: 0 0 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 30px;
+      background: var(--gold);
+      color: #111111;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      font-size: 11px;
+      font-weight: bold;
+      border: 1px solid var(--gold);
+    }
+
+    .btn:hover {
+      background: #c29f4b;
+    }
+
+    .status {
+      margin-top: 22px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .error {
+      color: #9b2c2c;
+    }
+
+    @media (max-width: 600px) {
+      .box {
+        padding: 38px 24px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .logo {
+        max-width: 165px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="box">
+
+    <img
+      class="logo"
+      src="assets/cca-logo-transparent.png"
+      alt="Chiaramonte Corporate Advisory"
+    >
+
+    <div class="kicker">
+      CCA Career Assessment
+    </div>
+
+    <h1>
+      Tu acceso está listo
+    </h1>
+
+    <p id="mensaje">
+      Estamos verificando tu acceso.
+    </p>
+
+    <a
+      id="btnTally"
+      class="btn"
+      href="#"
+      style="display: none;"
+    >
+      Comenzar evaluación
+    </a>
+
+    <div
+      id="estado"
+      class="status"
+    ></div>
+
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    const code = params.get("code");
+
+    const mensaje = document.getElementById("mensaje");
+    const btnTally = document.getElementById("btnTally");
+    const estado = document.getElementById("estado");
+
+    async function verificarAcceso() {
+
+      if (!code) {
+
+        mensaje.textContent =
+          "No encontramos un código de acceso.";
+
+        estado.textContent =
+          "Verificá el enlace recibido.";
+
+        estado.classList.add("error");
+
+        return;
+      }
+
+      try {
+
+        const response = await fetch(
+          `/api/ualabis/access?code=${encodeURIComponent(code)}`
+        );
+
+        const data = await response.json();
+
+        if (!response.ok || !data.ok) {
+
+          throw new Error(
+            data.error || "No pudimos validar tu acceso."
+          );
+
+        }
+
+        mensaje.textContent =
+          "Tu pago fue aprobado. Ya podés comenzar tu evaluación.";
+
+        btnTally.href =
+          "https://tally.so/r/9qVWdE";
+
+        btnTally.style.display =
+          "inline-flex";
+
+        estado.textContent =
+          "La evaluación demora aproximadamente 7–10 minutos.";
+
+      } catch (error) {
+
+        console.error(error);
+
+        mensaje.textContent =
+          "No pudimos validar tu acceso.";
+
+        estado.textContent =
+          error.message ||
+          "Por favor, verificá el enlace e intentá nuevamente.";
+
+        estado.classList.add("error");
+      }
+    }
+
+    verificarAcceso();
+  </script>
+
+</body>
+</html>
