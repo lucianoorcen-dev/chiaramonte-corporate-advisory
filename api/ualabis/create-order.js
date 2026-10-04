@@ -1,3 +1,7 @@
+import { neon } from "@neondatabase/serverless";
+
+const sql = neon(process.env.DATABASE_URL);
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({
@@ -59,7 +63,23 @@ export default async function handler(req, res) {
     const externalReference =
       `CCA-CAREER-${Date.now()}`;
 
-    // 3. Crear checkout en Ualá TEST
+    // 3. Guardar la orden en Neon
+    await sql`
+      INSERT INTO orders (
+        order_id,
+        amount,
+        currency,
+        status
+      )
+      VALUES (
+        ${externalReference},
+        100,
+        'ARS',
+        'pending'
+      )
+    `;
+
+    // 4. Crear checkout en Ualá TEST
     const orderResponse = await fetch(
       "https://checkout.stage.developers.ar.ua.la/v2/api/checkout",
       {
@@ -100,6 +120,8 @@ export default async function handler(req, res) {
     });
 
   } catch (error) {
+    console.error("Create order error:", error);
+
     return res.status(500).json({
       ok: false,
       error: "Error interno.",
