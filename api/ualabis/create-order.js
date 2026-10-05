@@ -11,20 +11,20 @@ export default async function handler(req, res) {
   }
 
   try {
-    const username = process.env.UALA_TEST_USERNAME;
-    const clientId = process.env.UALA_TEST_CLIENT_ID;
-    const clientSecretId = process.env.UALA_TEST_CLIENT_SECRET_ID;
+    const username = process.env.UALA_USERNAME;
+    const clientId = process.env.UALA_CLIENT_ID;
+    const clientSecretId = process.env.UALA_CLIENT_SECRET_ID;
 
     if (!username || !clientId || !clientSecretId) {
       return res.status(500).json({
         ok: false,
-        error: "Faltan credenciales Ualá TEST."
+        error: "Faltan credenciales Ualá de producción."
       });
     }
 
-    // 1. Obtener token de Ualá TEST
+    // 1. Obtener token de Ualá PRODUCCIÓN
     const authResponse = await fetch(
-      "https://auth.stage.developers.ar.ua.la/v2/api/auth/token",
+      "https://auth.developers.ar.ua.la/v2/api/auth/token",
       {
         method: "POST",
         headers: {
@@ -73,15 +73,17 @@ export default async function handler(req, res) {
       )
       VALUES (
         ${externalReference},
-        100,
+        15000,
         'ARS',
         'pending'
       )
     `;
 
-    // 4. Crear checkout en Ualá TEST
+    // 4. Crear checkout en Ualá PRODUCCIÓN
+    // Ualá recibe el monto en centavos:
+    // ARS 15.000 = 1.500.000 centavos
     const orderResponse = await fetch(
-      "https://checkout.stage.developers.ar.ua.la/v2/api/checkout",
+      "https://checkout.developers.ar.ua.la/v2/api/checkout",
       {
         method: "POST",
         headers: {
@@ -89,8 +91,8 @@ export default async function handler(req, res) {
           "Authorization": `Bearer ${accessToken}`
         },
         body: JSON.stringify({
-          amount: "100",
-          description: "CCA Career Assessment - TEST",
+          amount: "1500000",
+          description: "CCA Career Assessment",
           callback_fail:
             "https://www.corporateadvisory.com.ar/career-assessment/",
           callback_success:
@@ -114,7 +116,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({
       ok: true,
-      environment: "TEST",
+      environment: "PRODUCTION",
       external_reference: externalReference,
       order: orderData
     });
