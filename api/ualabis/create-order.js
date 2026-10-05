@@ -94,7 +94,8 @@ export default async function handler(req, res) {
           amount: "100",
           description: "CCA Career Assessment",
           callback_success:
-  `https://www.corporateadvisory.com.ar/career-assessment/access/?order=${encodeURIComponent(externalReference)}`,
+  `https://www.corporateadvisory.com.ar/career-assessment/access.html?order=${encodeURIComponent(externalReference)}`,
+
 
 callback_fail:
   "https://www.corporateadvisory.com.ar/career-assessment/",
