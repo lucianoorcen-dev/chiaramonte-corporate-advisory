@@ -73,7 +73,7 @@ export default async function handler(req, res) {
       )
       VALUES (
         ${externalReference},
-        20,
+        25,
         'ARS',
         'pending'
       )
@@ -91,7 +91,7 @@ export default async function handler(req, res) {
           "Authorization": `Bearer ${accessToken}`
         },
         body: JSON.stringify({
-          amount: "20",
+          amount: "25",
           description: "CCA Career Assessment",
           callback_fail:
             "https://www.corporateadvisory.com.ar/career-assessment/",
