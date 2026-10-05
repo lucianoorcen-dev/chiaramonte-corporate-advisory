@@ -93,10 +93,12 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           amount: "100",
           description: "CCA Career Assessment",
-          callback_fail:
-            "https://www.corporateadvisory.com.ar/career-assessment/",
           callback_success:
-            "https://www.corporateadvisory.com.ar/career-assessment/",
+  `https://www.corporateadvisory.com.ar/career-assessment/access/?order=${encodeURIComponent(externalReference)}`,
+
+callback_fail:
+  "https://www.corporateadvisory.com.ar/career-assessment/",
+
           notification_url:
             "https://www.corporateadvisory.com.ar/api/ualabis/webhook",
           external_reference: externalReference
