@@ -161,17 +161,43 @@
   </main>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search);
 
-    const code = params.get("code");
+  const code = params.get("code");
+  const order = params.get("order");
 
-    const mensaje = document.getElementById("mensaje");
-    const btnTally = document.getElementById("btnTally");
-    const estado = document.getElementById("estado");
+  const mensaje = document.getElementById("mensaje");
+  const btnTally = document.getElementById("btnTally");
+  const estado = document.getElementById("estado");
 
-    async function verificarAcceso() {
+  async function verificarAcceso() {
 
-      if (!code) {
+    try {
+
+      let accessCode = code;
+
+      /*
+       * Si venimos directamente con un access_code,
+       * lo validamos como antes.
+       */
+      if (!accessCode && order) {
+
+        const response = await fetch(
+          `/api/ualabis/access?order=${encodeURIComponent(order)}`
+        );
+
+        const data = await response.json();
+
+        if (!response.ok || !data.ok) {
+          throw new Error(
+            data.error || "No pudimos validar tu pago."
+          );
+        }
+
+        accessCode = data.access_code;
+      }
+
+      if (!accessCode) {
 
         mensaje.textContent =
           "No encontramos un código de acceso.";
@@ -184,52 +210,53 @@
         return;
       }
 
-      try {
+      /*
+       * Validamos finalmente el access_code.
+       */
+      const response = await fetch(
+        `/api/ualabis/access?code=${encodeURIComponent(accessCode)}`
+      );
 
-        const response = await fetch(
-          `/api/ualabis/access?code=${encodeURIComponent(code)}`
+      const data = await response.json();
+
+      if (!response.ok || !data.ok) {
+
+        throw new Error(
+          data.error || "No pudimos validar tu acceso."
         );
 
-        const data = await response.json();
-
-        if (!response.ok || !data.ok) {
-
-          throw new Error(
-            data.error || "No pudimos validar tu acceso."
-          );
-
-        }
-
-        mensaje.textContent =
-          "Tu pago fue aprobado. Ya podés comenzar tu evaluación.";
-
-        btnTally.href =
-  `https://tally.so/r/9qVWdE?access_code=${encodeURIComponent(code)}`;
-
-        
-        btnTally.style.display =
-          "inline-flex";
-
-        estado.textContent =
-          "La evaluación demora aproximadamente 7–10 minutos.";
-
-      } catch (error) {
-
-        console.error(error);
-
-        mensaje.textContent =
-          "No pudimos validar tu acceso.";
-
-        estado.textContent =
-          error.message ||
-          "Por favor, verificá el enlace e intentá nuevamente.";
-
-        estado.classList.add("error");
       }
-    }
 
-    verificarAcceso();
-  </script>
+      mensaje.textContent =
+        "Tu pago fue aprobado. Ya podés comenzar tu evaluación.";
+
+      btnTally.href =
+        `https://tally.so/r/9qVWdE?access_code=${encodeURIComponent(accessCode)}`;
+
+      btnTally.style.display =
+        "inline-flex";
+
+      estado.textContent =
+        "La evaluación demora aproximadamente 7–10 minutos.";
+
+    } catch (error) {
+
+      console.error(error);
+
+      mensaje.textContent =
+        "No pudimos validar tu acceso.";
+
+      estado.textContent =
+        error.message ||
+        "Por favor, verificá el enlace e intentá nuevamente.";
+
+      estado.classList.add("error");
+    }
+  }
+
+  verificarAcceso();
+</script>
+
 
 </body>
 </html>
