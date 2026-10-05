@@ -107,12 +107,19 @@ export default async function handler(req, res) {
     const orderData = await orderResponse.json();
 
     if (!orderResponse.ok) {
-      return res.status(orderResponse.status).json({
-        ok: false,
-        step: "create_order",
-        details: orderData
-      });
-    }
+  console.error("UALA CREATE ORDER ERROR:", {
+    status: orderResponse.status,
+    details: orderData
+  });
+
+  return res.status(400).json({
+    ok: false,
+    step: "create_order",
+    uala_status: orderResponse.status,
+    uala_error: orderData
+  });
+}
+
 
     return res.status(200).json({
       ok: true,
