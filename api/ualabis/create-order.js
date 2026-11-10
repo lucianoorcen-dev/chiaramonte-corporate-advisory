@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { neon } from "@neondatabase/serverless";
 
 const sql = neon(process.env.DATABASE_URL);
@@ -22,7 +23,6 @@ export default async function handler(req, res) {
       });
     }
 
-    // 1. Obtener token de Ualá PRODUCCIÓN
     const authResponse = await fetch(
       "https://auth.developers.ar.ua.la/v2/api/auth/token",
       {
@@ -39,31 +39,27 @@ export default async function handler(req, res) {
       }
     );
 
-    const authData = await authResponse.json();
-
     if (!authResponse.ok) {
-      return res.status(authResponse.status).json({
+      console.error("Ualá create-order: falló la autenticación.", authResponse.status);
+      return res.status(502).json({
         ok: false,
-        step: "authentication",
-        details: authData
+        error: "No se pudo iniciar el pago con Ualá."
       });
     }
 
+    const authData = await authResponse.json();
     const accessToken = authData.access_token;
 
     if (!accessToken) {
-      return res.status(500).json({
+      return res.status(502).json({
         ok: false,
-        step: "authentication",
-        error: "Ualá no devolvió un access_token."
+        error: "Ualá no devolvió un token de acceso."
       });
     }
 
-    // 2. Crear referencia única para la compra
-    const externalReference =
-      `CCA-CAREER-${Date.now()}`;
+    // Use an unpredictable reference so an order ID cannot be guessed by incrementing a timestamp.
+    const externalReference = `CCA-CAREER-${randomUUID()}`;
 
-    // 3. Guardar la orden en Neon
     await sql`
       INSERT INTO orders (
         order_id,
@@ -79,9 +75,6 @@ export default async function handler(req, res) {
       )
     `;
 
-    // 4. Crear checkout en Ualá PRODUCCIÓN
-    // Ualá recibe el monto en centavos:
-    // ARS 15.000 = 1.500.000 centavos
     const orderResponse = await fetch(
       "https://checkout.developers.ar.ua.la/v2/api/checkout",
       {
@@ -94,12 +87,9 @@ export default async function handler(req, res) {
           amount: "5000",
           description: "CCA Career Assessment",
           callback_success:
-  `https://www.corporateadvisory.com.ar/career-assessment/access.html?order=${encodeURIComponent(externalReference)}`,
-
-
-callback_fail:
-  "https://www.corporateadvisory.com.ar/career-assessment/",
-
+            `https://www.corporateadvisory.com.ar/career-assessment/access.html?order=${encodeURIComponent(externalReference)}`,
+          callback_fail:
+            "https://www.corporateadvisory.com.ar/career-assessment/",
           notification_url:
             "https://www.corporateadvisory.com.ar/api/ualabis/webhook",
           external_reference: externalReference
@@ -107,22 +97,17 @@ callback_fail:
       }
     );
 
-    const orderData = await orderResponse.json();
-
     if (!orderResponse.ok) {
-  console.error("UALA CREATE ORDER ERROR:", {
-    status: orderResponse.status,
-    details: orderData
-  });
+      console.error("Ualá create-order: rechazo al crear checkout.", orderResponse.status);
+      return res.status(502).json({
+        ok: false,
+        step: "create_order",
+        error: "Ualá no pudo crear el enlace de pago.",
+        uala_status: orderResponse.status
+      });
+    }
 
-  return res.status(400).json({
-    ok: false,
-    step: "create_order",
-    uala_status: orderResponse.status,
-    uala_error: orderData
-  });
-}
-
+    const orderData = await orderResponse.json();
 
     return res.status(200).json({
       ok: true,
@@ -130,14 +115,11 @@ callback_fail:
       external_reference: externalReference,
       order: orderData
     });
-
   } catch (error) {
-    console.error("Create order error:", error);
-
+    console.error("Create order error:", error?.message);
     return res.status(500).json({
       ok: false,
-      error: "Error interno.",
-      details: error.message
+      error: "Error interno."
     });
   }
 }
