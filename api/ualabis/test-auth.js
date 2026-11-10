@@ -6,6 +6,11 @@ export default async function handler(req, res) {
     });
   }
 
+  // Test authentication diagnostics must never be callable from production.
+  if (process.env.VERCEL_ENV === "production") {
+    return res.status(404).json({ ok: false, error: "Not Found" });
+  }
+
   try {
     const username = process.env.UALA_TEST_USERNAME;
     const clientId = process.env.UALA_TEST_CLIENT_ID;
@@ -40,7 +45,7 @@ export default async function handler(req, res) {
       return res.status(response.status).json({
         ok: false,
         error: "Ualá rechazó la autenticación.",
-        details: data
+        error: "Ualá TEST rechazó la autenticación."
       });
     }
 
@@ -55,7 +60,7 @@ export default async function handler(req, res) {
     return res.status(500).json({
       ok: false,
       error: "Error interno al comunicarse con Ualá Bis.",
-      details: error.message
+      error: "Error interno al comunicarse con Ualá TEST."
     });
   }
 }
