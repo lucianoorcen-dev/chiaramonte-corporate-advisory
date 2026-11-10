@@ -113,7 +113,32 @@ export default async function handler(req, res) {
       });
     }
 
-    // Persist only Ualá's independently verified order response.
+    // Match the independently verified Ualá amount to the amount stored for this order.
+    const verifiedAmount = Number(verifiedOrder?.amount);
+    const expectedAmount = Number(orders[0].amount);
+
+    if (
+      !Number.isFinite(verifiedAmount) ||
+      !Number.isFinite(expectedAmount) ||
+      verifiedAmount !== expectedAmount
+    ) {
+      console.error("Ualá webhook: el importe verificado no coincide con la orden local.");
+      return res.status(400).json({
+        ok: false,
+        error: "El importe de la orden no pudo ser validado."
+      });
+    }
+
+    // Store only the minimum verified order fields; avoid retaining customer/card metadata.
+    const paymentData = {
+      uuid: verifiedOrder.uuid,
+      external_reference: verifiedOrder.external_reference,
+      amount: verifiedAmount,
+      status: verifiedOrder.status,
+      created_date: verifiedOrder.created_date,
+      updated_date: verifiedOrder.updated_date
+    };
+
     const existingPayment = await sql`
       SELECT payment_id
       FROM payments
@@ -121,7 +146,15 @@ export default async function handler(req, res) {
       LIMIT 1
     `;
 
-    if (existingPayment.length === 0) {
+    if (existingPayment.length > 0) {
+      await sql`
+        UPDATE payments
+        SET
+          status = ${verifiedOrder.status},
+          payment_data = ${JSON.stringify(paymentData)}
+        WHERE payment_id = ${uuid}
+      `;
+    } else {
       await sql`
         INSERT INTO payments (
           order_id,
@@ -133,7 +166,7 @@ export default async function handler(req, res) {
           ${external_reference},
           ${uuid},
           ${verifiedOrder.status},
-          ${JSON.stringify(verifiedOrder)}
+          ${JSON.stringify(paymentData)}
         )
       `;
     }
