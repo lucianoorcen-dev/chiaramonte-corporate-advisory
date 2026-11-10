@@ -98,7 +98,6 @@ export default async function handler(req, res) {
     );
 
     if (!orderResponse.ok) {
-      const responseText = await orderResponse.text();
       console.error("Ualá create-order: rechazo al crear checkout.", orderResponse.status);
       return res.status(502).json({
         ok: false,
