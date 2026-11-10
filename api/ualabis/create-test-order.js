@@ -6,6 +6,11 @@ export default async function handler(req, res) {
     });
   }
 
+  // Test checkout must never be callable from the production deployment.
+  if (process.env.VERCEL_ENV === "production") {
+    return res.status(404).json({ ok: false, error: "Not Found" });
+  }
+
   try {
     const username = process.env.UALA_TEST_USERNAME;
     const clientId = process.env.UALA_TEST_CLIENT_ID;
@@ -41,7 +46,7 @@ export default async function handler(req, res) {
       return res.status(authResponse.status).json({
         ok: false,
         step: "authentication",
-        details: authData
+        error: "Ualá TEST rechazó la autenticación."
       });
     }
 
@@ -79,7 +84,7 @@ export default async function handler(req, res) {
       return res.status(orderResponse.status).json({
         ok: false,
         step: "create_order",
-        details: orderData
+        error: "Ualá TEST no pudo crear la orden."
       });
     }
 
@@ -94,7 +99,7 @@ export default async function handler(req, res) {
     return res.status(500).json({
       ok: false,
       error: "Error interno.",
-      details: error.message
+      error: "Error interno al crear la orden TEST."
     });
   }
 }
