@@ -4,45 +4,101 @@ const sql = neon(process.env.DATABASE_URL);
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
-    return res.status(405).json({
-      ok: false,
-      error: "Method Not Allowed"
-    });
+    return res.status(405).json({ ok: false, error: "Method Not Allowed" });
   }
 
   try {
-    const notification = req.body;
+    const notification = req.body || {};
+    const { uuid, external_reference } = notification;
 
-    console.log("UALA WEBHOOK:", notification);
-
-    const {
-      uuid,
-      external_reference,
-      status,
-      created_date,
-      api_version
-    } = notification || {};
-
-    console.log("UALA PAYMENT STATUS:", {
-      uuid,
-      external_reference,
-      status,
-      created_date,
-      api_version
-    });
-
-    if (!uuid || !external_reference || !status) {
-      console.error(
-        "Webhook recibido con datos incompletos."
-      );
-
+    // The notification identifies the order, but its status is never trusted.
+    if (
+      typeof uuid !== "string" ||
+      typeof external_reference !== "string" ||
+      !uuid ||
+      !external_reference
+    ) {
       return res.status(400).json({
         ok: false,
         error: "Notificación Ualá incompleta."
       });
     }
 
-    // Buscar la orden
+    const username = process.env.UALA_USERNAME;
+    const clientId = process.env.UALA_CLIENT_ID;
+    const clientSecretId = process.env.UALA_CLIENT_SECRET_ID;
+
+    if (!username || !clientId || !clientSecretId) {
+      console.error("Ualá webhook: faltan variables de autenticación.");
+      return res.status(503).json({
+        ok: false,
+        error: "Verificación de pago temporalmente no disponible."
+      });
+    }
+
+    const authResponse = await fetch(
+      "https://auth.developers.ar.ua.la/v2/api/auth/token",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username,
+          client_id: clientId,
+          client_secret_id: clientSecretId,
+          grant_type: "client_credentials"
+        })
+      }
+    );
+
+    if (!authResponse.ok) {
+      console.error("Ualá webhook: falló la autenticación.", authResponse.status);
+      return res.status(502).json({
+        ok: false,
+        error: "No se pudo verificar el pago con Ualá."
+      });
+    }
+
+    const authData = await authResponse.json();
+    if (!authData.access_token) {
+      console.error("Ualá webhook: la autenticación no devolvió token.");
+      return res.status(502).json({
+        ok: false,
+        error: "No se pudo verificar el pago con Ualá."
+      });
+    }
+
+    // Confirm the order directly with Ualá before changing local payment state.
+    const orderResponse = await fetch(
+      `https://checkout.developers.ar.ua.la/v2/api/orders/${encodeURIComponent(uuid)}`,
+      {
+        method: "GET",
+        headers: { Authorization: `Bearer ${authData.access_token}` }
+      }
+    );
+
+    if (!orderResponse.ok) {
+      console.error("Ualá webhook: no se pudo consultar la orden.", orderResponse.status);
+      return res.status(502).json({
+        ok: false,
+        error: "No se pudo verificar la orden con Ualá."
+      });
+    }
+
+    const verifiedOrder = await orderResponse.json();
+    const validStatuses = ["PENDING", "PROCESSED", "APPROVED", "REJECTED", "REFUNDED"];
+
+    if (
+      verifiedOrder?.uuid !== uuid ||
+      verifiedOrder?.external_reference !== external_reference ||
+      !validStatuses.includes(verifiedOrder?.status)
+    ) {
+      console.error("Ualá webhook: la orden consultada no coincide con la notificación.");
+      return res.status(400).json({
+        ok: false,
+        error: "La orden no pudo ser validada."
+      });
+    }
+
     const orders = await sql`
       SELECT *
       FROM orders
@@ -51,58 +107,58 @@ export default async function handler(req, res) {
     `;
 
     if (orders.length === 0) {
-      console.error(
-        "No se encontró la orden:",
-        external_reference
-      );
-
       return res.status(404).json({
         ok: false,
         error: "Orden no encontrada."
       });
     }
 
-    // Guardar el pago recibido
-    await sql`
-      INSERT INTO payments (
-        order_id,
-        payment_id,
-        status,
-        payment_data
-      )
-      VALUES (
-        ${external_reference},
-        ${uuid},
-        ${status},
-        ${JSON.stringify(notification)}
-      )
+    // Persist only Ualá's independently verified order response.
+    const existingPayment = await sql`
+      SELECT payment_id
+      FROM payments
+      WHERE payment_id = ${uuid}
+      LIMIT 1
     `;
 
-    // Actualizar la orden
+    if (existingPayment.length === 0) {
+      await sql`
+        INSERT INTO payments (
+          order_id,
+          payment_id,
+          status,
+          payment_data
+        )
+        VALUES (
+          ${external_reference},
+          ${uuid},
+          ${verifiedOrder.status},
+          ${JSON.stringify(verifiedOrder)}
+        )
+      `;
+    }
+
     await sql`
       UPDATE orders
       SET
-        status = ${status},
+        status = ${verifiedOrder.status},
         paid_at = CASE
-          WHEN ${status} = 'APPROVED'
-          THEN NOW()
+          WHEN ${verifiedOrder.status} = 'APPROVED'
+          THEN COALESCE(paid_at, NOW())
           ELSE paid_at
         END
       WHERE order_id = ${external_reference}
     `;
 
-    // Si el pago fue aprobado, generar acceso
-    if (status === "APPROVED") {
-
+    if (verifiedOrder.status === "APPROVED") {
       const existingAccess = await sql`
-        SELECT *
+        SELECT id
         FROM access_codes
         WHERE order_id = ${external_reference}
         LIMIT 1
       `;
 
       if (existingAccess.length === 0) {
-
         const accessCode =
           `CCA-${crypto.randomUUID().replace(/-/g, "").slice(0, 12).toUpperCase()}`;
 
@@ -118,25 +174,12 @@ export default async function handler(req, res) {
             ${orders[0].email || null}
           )
         `;
-
-        console.log(
-          `Acceso creado para ${external_reference}: ${accessCode}`
-        );
-
-      } else {
-        console.log(
-          `La orden ${external_reference} ya tiene un acceso.`
-        );
       }
     }
 
-    return res.status(200).json({
-      ok: true
-    });
-
+    return res.status(200).json({ ok: true });
   } catch (error) {
-    console.error("Webhook error:", error);
-
+    console.error("Ualá webhook: error interno al procesar la notificación.", error?.message);
     return res.status(500).json({
       ok: false,
       error: "Error interno procesando webhook."
