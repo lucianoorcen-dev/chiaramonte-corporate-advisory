@@ -1,3 +1,4 @@
+import { randomBytes } from "node:crypto";
 import { neon } from "@neondatabase/serverless";
 
 const sql = neon(process.env.DATABASE_URL);
@@ -193,7 +194,7 @@ export default async function handler(req, res) {
 
       if (existingAccess.length === 0) {
         const accessCode =
-          `CCA-${crypto.randomUUID().replace(/-/g, "").slice(0, 12).toUpperCase()}`;
+          `CCA-${randomBytes(16).toString("hex").toUpperCase()}`;
 
         await sql`
           INSERT INTO access_codes (
