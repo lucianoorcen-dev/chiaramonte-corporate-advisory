@@ -19,7 +19,7 @@ header{position:fixed;inset:0 0 auto;z-index:20;background:rgba(13,15,18,.94);ba
 .cta{padding:95px 0;background:#0b0e12}.cta-box{border:1px solid var(--line);background:linear-gradient(120deg,rgba(24,40,61,.8),rgba(13,17,23,.85));padding:52px;display:flex;align-items:center;justify-content:space-between;gap:45px}.cta h2{font:500 clamp(30px,3.5vw,43px)/1.15 "Playfair Display",serif;margin:10px 0}.cta p{color:#b6c0ca;max-width:650px;margin:0}.cta .actions{margin:0;flex-shrink:0}
 footer{padding:35px 0;background:#090b0e;border-top:1px solid rgba(255,255,255,.08)}.foot{display:flex;justify-content:space-between;gap:25px;align-items:center;color:#929ba6;font-size:11px}.foot a{color:#d6c28c;text-decoration:none}
 /* El idioma se aplica actualizando el contenido desde data-es / data-en. No ocultar nodos completos. */
-@media(max-width:900px){.navlinks{gap:13px}.navlinks>a{font-size:8px}.service{grid-template-columns:65px 1fr}.output{grid-column:2}.intro-grid{gap:45px}.cta-box{display:block}.cta .actions{margin-top:25px}}
+@media(max-width:900px){.navlinks{display:none;position:absolute;top:70px;left:0;right:0;background:#0d0f12;padding:22px 24px 26px;align-items:flex-start;flex-direction:column;border-bottom:1px solid var(--line);box-shadow:0 18px 35px rgba(0,0,0,.25)}.navlinks.open{display:flex}.menu{display:block}.language{border-left:0;padding-left:0}.navlinks>a{font-size:10px;padding:5px 0}.service{grid-template-columns:65px 1fr}.output{grid-column:2}.intro-grid{gap:45px}.cta-box{display:block}.cta .actions{margin-top:25px}}
 @media(max-width:680px){.wrap{width:min(100% - 34px,1240px)}.nav{min-height:70px}.brand img{width:53px;height:53px}.brand span{font-size:9px}.menu{display:block}.navlinks{display:none;position:absolute;top:70px;left:0;right:0;background:#0d0f12;padding:22px 24px 26px;align-items:flex-start;flex-direction:column;border-bottom:1px solid var(--line)}.navlinks.open{display:flex}.language{border-left:0;padding-left:0}.hero{padding:135px 0 75px}.hero p{font-size:15px}.intro{padding:65px 0}.intro-grid{grid-template-columns:1fr;gap:20px}.section-title{display:block;padding:52px 0 22px}.section-title p{margin-top:18px}.services{padding-bottom:75px}.service{grid-template-columns:42px 1fr;gap:15px;padding:32px 0}.number{font-size:28px}.service h3{font-size:26px}.detail-grid{grid-template-columns:1fr;gap:16px}.output{grid-column:2}.method{padding:70px 0}.method-grid{grid-template-columns:1fr 1fr}.step{border-bottom:1px solid rgba(255,255,255,.12)}.step:nth-child(2){border-right:0}.step:nth-child(3),.step:nth-child(4){border-bottom:0}.cta{padding:65px 0}.cta-box{padding:30px 24px}.foot{display:block}.foot div+div{margin-top:12px}}
 </style>
 </head>
@@ -34,7 +34,7 @@ footer{padding:35px 0;background:#090b0e;border-top:1px solid rgba(255,255,255,.
 <a href="/alianzas-estrategicas.html" data-es="Alianzas" data-en="Partnerships">Alianzas</a>
 <a href="index.html?interest=control#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
 <div class="language"><button id="esBtn" class="active" type="button" onclick="setLang('es')">ES</button><span>|</span><button id="enBtn" type="button" onclick="setLang('en')">EN</button></div>
-</nav><button class="menu" type="button" aria-label="Abrir menú" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+</nav><button class="menu" id="mobileMenuBtn" type="button" aria-label="Abrir menú" aria-controls="navlinks" aria-expanded="false" onclick="toggleNavMenu(this)">☰</button>
 </div></header>
 <main>
 <section class="hero"><div class="wrap">
@@ -76,7 +76,8 @@ function applyLang(lang){
  try{localStorage.setItem('cca-lang',lang)}catch(e){}
 }
 function setLang(lang){applyLang(lang)}
+function toggleNavMenu(button){const nav=document.getElementById('navlinks');const open=!nav.classList.contains('open');nav.classList.toggle('open',open);button.setAttribute('aria-expanded',String(open));button.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');}
 try{applyLang(localStorage.getItem('cca-lang')==='en'?'en':'es')}catch(e){applyLang('es')}
-document.querySelectorAll('.navlinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navlinks').classList.remove('open')));
+document.querySelectorAll('.navlinks a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('navlinks').classList.remove('open');const button=document.getElementById('mobileMenuBtn');button.setAttribute('aria-expanded','false');button.setAttribute('aria-label','Abrir menú');}));
 </script>
 </body></html>
