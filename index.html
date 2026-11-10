@@ -178,6 +178,18 @@ function toggleMenu(){document.getElementById('nav').classList.toggle('mobile-op
 const saved=localStorage.getItem('cca-lang');applyLang(saved==='en'?'en':'es');
 document.querySelectorAll('.navlinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('nav').classList.remove('mobile-open')));
 document.querySelectorAll('[data-interest-choice]').forEach(link=>link.addEventListener('click',()=>{const field=document.getElementById('interest');if(field)field.value=link.getAttribute('data-interest-choice');}));
+const inquiryParams=new URLSearchParams(window.location.search);
+const requestedInterest=inquiryParams.get('interest');
+const requestedProduct=inquiryParams.get('product');
+if(requestedInterest||requestedProduct){
+  const interestField=document.getElementById('interest');
+  const messageField=document.getElementById('message');
+  if(interestField&&['control','desarrollo','solucion','otro'].includes(requestedInterest))interestField.value=requestedInterest;
+  if(messageField&&requestedProduct&&!messageField.value.trim()){
+    const prefix=document.documentElement.lang==='en'?'I would like to receive information about: ':'Quisiera recibir información sobre: ';
+    messageField.value=prefix+requestedProduct+'.';
+  }
+}
 </script>
 <script>
 window.formspree=window.formspree||function(){(formspree.q=formspree.q||[]).push(arguments);};
